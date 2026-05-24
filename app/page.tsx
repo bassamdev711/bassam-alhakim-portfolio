@@ -139,6 +139,7 @@ export default function PortfolioPage() {
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             style={{ x: portraitX, y: portraitY }}
             className="flex-1 relative group"
+            onTouchStart={() => {}}
           >
             {/* Cinematic Glow Behind Portrait */}
             <div className="absolute inset-0 bg-mood-blue rounded-full blur-[100px] animate-pulse" />
@@ -150,7 +151,7 @@ export default function PortfolioPage() {
                 alt="Bassam Alhakim"
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="w-full h-full object-cover grayscale contrast-125 brightness-75 transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-100"
+                className="w-full h-full object-cover grayscale contrast-125 brightness-75 transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-100 group-active:grayscale-0 group-active:brightness-100 active:grayscale-0 active:brightness-100"
               />
               
               {/* Gradient Mask (Melting into background) */}
@@ -593,7 +594,7 @@ function CinematicProjectCard({ project }: { project: typeof showcaseProjects[0]
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      className="relative min-h-[55vh] md:min-h-[65vh] rounded-[3.5rem] overflow-hidden glass-panel border-white/5 p-8 md:p-14 flex flex-col justify-between group hover:border-white/15 transition-all duration-1000"
+      className="relative min-h-[55vh] md:min-h-[65vh] rounded-[3.5rem] overflow-hidden glass-panel p-8 md:p-14 flex flex-col justify-between group transition-all duration-1000"
     >
       {/* Background patterns */}
       <div className="absolute inset-0 -z-10 pointer-events-none opacity-20 group-hover:opacity-60 transition-opacity duration-1000">
@@ -608,14 +609,14 @@ function CinematicProjectCard({ project }: { project: typeof showcaseProjects[0]
       {/* Top Tag & Title */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <span 
-          className="text-[10px] font-black uppercase tracking-[0.4em] px-4 py-1.5 rounded-full bg-white/5 border border-white/5 transition-all duration-500 group-hover:border-current"
+          className="text-[10px] font-black uppercase tracking-[0.4em] px-4 py-1.5 rounded-full bg-glass-surface border border-glass-border transition-all duration-500 group-hover:border-current"
           style={{ color: project.accentColor }}
         >
           {project.tagline}
         </span>
         <div className="flex flex-wrap gap-2">
           {project.tech.map((t, idx) => (
-            <span key={idx} className="text-[9px] font-bold uppercase tracking-wider text-gray-500 bg-white/5 px-3 py-1 rounded-md">
+            <span key={idx} className="text-[9px] font-bold uppercase tracking-wider text-subtle bg-glass-surface px-3 py-1 rounded-md">
               {t}
             </span>
           ))}
@@ -624,19 +625,19 @@ function CinematicProjectCard({ project }: { project: typeof showcaseProjects[0]
 
       {/* Center Details */}
       <div className="my-6 space-y-6 max-w-2xl text-left">
-        <h3 className="text-3xl md:text-6xl font-black uppercase tracking-tighter text-white transition-all duration-500 pr-2 break-words">
+        <h3 className="text-3xl md:text-6xl font-black uppercase tracking-tighter text-foreground transition-all duration-500 pr-2 break-words">
           {project.name}
         </h3>
-        <p className="text-gray-400 text-lg leading-relaxed font-medium">
+        <p className="text-muted text-lg leading-relaxed font-medium">
           {project.desc}
         </p>
 
         {/* 3 Capabilities/Highlights */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-white/5">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-glass-border">
           {project.highlights.map((h, i) => (
             <div key={i} className="flex items-center gap-2.5">
               <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: project.accentColor }} />
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-300">{h}</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-muted">{h}</span>
             </div>
           ))}
         </div>
