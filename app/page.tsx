@@ -31,6 +31,7 @@ export default function PortfolioPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const [isColorized, setIsColorized] = useState(false);
   
   // Mouse Tracking for Parallax & Spotlight
   const mouseX = useMotionValue(0);
@@ -138,8 +139,8 @@ export default function PortfolioPage() {
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             style={{ x: portraitX, y: portraitY }}
-            className="flex-1 relative group"
-            onTouchStart={() => {}}
+            className="flex-1 relative group cursor-pointer"
+            onClick={() => setIsColorized(!isColorized)}
           >
             {/* Cinematic Glow Behind Portrait */}
             <div className="absolute inset-0 bg-mood-blue rounded-full blur-[100px] animate-pulse" />
@@ -151,7 +152,7 @@ export default function PortfolioPage() {
                 alt="Bassam Alhakim"
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="w-full h-full object-cover grayscale contrast-125 brightness-75 transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-100 group-active:grayscale-0 group-active:brightness-100 active:grayscale-0 active:brightness-100"
+                className={`w-full h-full object-cover transition-all duration-700 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 ${isColorized ? 'grayscale-0 contrast-100 brightness-100' : 'grayscale contrast-125 brightness-75'}`}
               />
               
               {/* Gradient Mask (Melting into background) */}

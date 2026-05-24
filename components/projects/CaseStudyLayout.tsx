@@ -92,27 +92,22 @@ export default function CaseStudyLayout({
         style={{ scaleX, backgroundColor: accentColor }}
       />
 
-      {/* Floating Back Button - Fades in on Hover */}
+      {/* Floating Back Button - Prominent at Bottom */}
       <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 0.15, x: 0 }}
-        whileHover={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.6 }}
-        className="fixed top-6 left-6 z-[99]"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+        className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[99]"
       >
         <Link
           href="/#projects"
-          className="group inline-flex items-center gap-2.5 px-5 py-3 rounded-full border border-glass-border bg-transparent hover:bg-glass-surface hover:border-glass-border/40 backdrop-blur-0 hover:backdrop-blur-md text-xs font-black uppercase tracking-widest text-muted hover:text-foreground transition-all duration-500 shadow-none hover:shadow-2xl"
-          style={{ boxShadow: `0 8px 32px rgba(0,0,0,0)` }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.6)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0)';
-          }}
+          className="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full border border-glass-border bg-glass-surface backdrop-blur-xl text-xs font-black uppercase tracking-widest text-foreground transition-all duration-500 shadow-xl hover:border-primary/50"
+          style={{ boxShadow: `0 8px 32px rgba(0,0,0,0.3)` }}
         >
-          <ArrowLeft size={13} className="group-hover:-translate-x-1 transition-transform duration-300" />
-          Back to Identity
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform duration-300" />
+          Back to Projects
         </Link>
       </motion.div>
 
