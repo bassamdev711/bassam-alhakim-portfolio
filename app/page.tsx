@@ -17,6 +17,7 @@ import {
 import Link from "next/link";
 
 import NavDock from "@/components/nav-dock";
+import ClientIntakeSection from "@/components/sections/client-intake-section";
 
 // Custom SVG Icons for Socials
 const GithubIcon = () => (
@@ -100,8 +101,8 @@ export default function PortfolioPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-[clamp(3rem,7vw,7.5rem)] font-black tracking-tighter leading-[0.85] uppercase break-keep"
-              style={{ wordBreak: "keep-all", overflowWrap: "normal" }}
+              className="text-[clamp(2.25rem,7vw,7.5rem)] font-black tracking-tighter leading-[0.85] uppercase break-normal"
+              style={{ wordBreak: "normal", overflowWrap: "normal" }}
             >
               BASSAM <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-glow">
@@ -186,7 +187,7 @@ export default function PortfolioPage() {
         >
           <div className="absolute top-0 left-[-200px] w-[400px] h-[400px] bg-mood-blue rounded-full blur-[100px] -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
           <h4 className="text-primary font-black tracking-[0.4em] uppercase text-[11px] mb-10">Philosophy</h4>
-          <h2 className="text-2xl md:text-7xl font-black leading-[1.05] tracking-normal md:tracking-tighter max-w-5xl uppercase text-foreground break-words hyphens-auto">
+          <h2 className="text-2xl md:text-7xl font-black leading-[1.05] tracking-normal md:tracking-tighter max-w-5xl uppercase text-foreground break-normal hyphens-none">
             Engineering products that <span className="text-muted italic">feel alive</span> through <span className="text-foreground">responsive architecture.</span>
           </h2>
         </motion.section>
@@ -198,7 +199,7 @@ export default function PortfolioPage() {
               <h4 className="text-primary font-black tracking-[0.4em] uppercase text-[11px] flex items-center justify-center gap-2">
                 <span className="w-8 h-[1px] bg-primary"></span> Engineering Narrative
               </h4>
-              <h2 className="text-4xl md:text-8xl font-black uppercase tracking-tighter text-foreground leading-[0.9]">
+              <h2 className="text-3xl sm:text-4xl md:text-8xl font-black uppercase tracking-tighter text-foreground leading-[0.9] break-normal" style={{ wordBreak: "normal", overflowWrap: "normal" }}>
                 SYSTEM <br className="md:hidden" />
                 <span className="text-muted italic">CAPABILITIES</span>
               </h2>
@@ -273,7 +274,7 @@ export default function PortfolioPage() {
         {/* Cinematic Vertical Showcase */}
         <section id="projects" className="relative mb-48 py-24 border-y border-glass-border">
            <div className="flex flex-col items-center text-center space-y-10 mb-20">
-              <h2 className="text-5xl md:text-9xl font-black tracking-tighter uppercase italic text-subtle">
+              <h2 className="text-4xl sm:text-5xl md:text-9xl font-black tracking-tighter uppercase italic text-subtle break-normal" style={{ wordBreak: "normal", overflowWrap: "normal" }}>
                 Engineering <span className="text-foreground not-italic">Showcase</span>
               </h2>
               <p className="text-muted max-w-lg text-lg md:text-xl font-medium leading-loose">
@@ -324,42 +325,11 @@ export default function PortfolioPage() {
           />
         </motion.section>
 
-        {/* ── LAYER 2: PREMIUM CTA ── */}
-        <section
-          id="contact"
-          className="relative py-32 mb-12 overflow-hidden"
-        >
-          {/* Deep ambient background */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-mood-blue to-transparent opacity-50" />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[300px] bg-mood-blue rounded-full blur-[100px]" />
-          </div>
+        {/* ── LAYER 2: PREMIUM COLLABORATION GATEWAY ── */}
+        <ClientIntakeSection />
 
-          <div className="flex flex-col items-center text-center gap-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-muted">
-                Open to Collaboration
-              </span>
-              <h2 className="text-5xl md:text-8xl font-black tracking-tighter uppercase leading-none text-foreground">
-                Let's <span className="text-blue-500">Build</span>
-                <br />
-                <span className="text-muted italic text-4xl md:text-6xl">
-                  Something Real.
-                </span>
-              </h2>
-              <p className="text-muted text-lg max-w-lg mx-auto leading-relaxed mt-6">
-                Available for selected freelance and product collaborations.
-                <br />
-                Systems architecture, full-stack platforms, and technical leadership.
-              </p>
-            </motion.div>
-
-            {/* CTA Buttons */}
+        {/* ── SOCIAL LINKS ── */}
+        <section className="relative pb-24 flex flex-col items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -415,7 +385,6 @@ export default function PortfolioPage() {
                 780500363
               </motion.a>
             </motion.div>
-          </div>
         </section>
 
         {/* ── LAYER 3: MINIMAL FOOTER (FADE OUT) ── */}
@@ -487,7 +456,7 @@ function CapabilityCard({ title, subtitle, points, glow }: { title: string; subt
       className="glass-panel p-8 md:p-12 rounded-[2.5rem] space-y-8 relative overflow-hidden transition-all duration-1000 group"
     >
       <div className="space-y-2">
-        <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-foreground group-hover:text-primary transition-colors pr-2 break-words">{title}</h3>
+        <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-foreground group-hover:text-primary transition-colors pr-2 break-normal">{title}</h3>
         <p className="text-muted font-black uppercase text-[9px] tracking-[0.3em]">{subtitle}</p>
       </div>
       
@@ -626,7 +595,7 @@ function CinematicProjectCard({ project }: { project: typeof showcaseProjects[0]
 
       {/* Center Details */}
       <div className="my-6 space-y-6 max-w-2xl text-left">
-        <h3 className="text-3xl md:text-6xl font-black uppercase tracking-tighter text-foreground transition-all duration-500 pr-2 break-words">
+        <h3 className="text-3xl md:text-6xl font-black uppercase tracking-tighter text-foreground transition-all duration-500 pr-2 break-normal">
           {project.name}
         </h3>
         <p className="text-muted text-lg leading-relaxed font-medium">

@@ -116,8 +116,9 @@ body {
    Does NOT affect visual appearance.
 ───────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
-  word-break: break-word;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
   min-width: 0;
 }
 

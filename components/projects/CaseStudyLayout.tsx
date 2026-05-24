@@ -144,7 +144,7 @@ export default function CaseStudyLayout({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-[clamp(3rem,8vw,7.5rem)] font-black tracking-tighter leading-[0.85] mb-8 uppercase break-normal pr-2 text-foreground"
+            className="text-[clamp(2rem,8vw,7.5rem)] font-black tracking-tighter leading-[0.85] mb-8 uppercase break-normal pr-2 text-foreground"
             style={{ wordBreak: "normal", overflowWrap: "normal" }}
           >
             {title} <br />
@@ -268,7 +268,7 @@ export default function CaseStudyLayout({
         <section className="py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 border-t border-glass-border">
           <div className="space-y-6">
             <h4 className="font-black tracking-[0.4em] uppercase text-[11px] text-muted">{problemTitle}</h4>
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none italic break-normal pr-2 text-foreground" style={{ wordBreak: "normal", overflowWrap: "normal" }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none italic break-normal pr-2 text-foreground" style={{ wordBreak: "normal", overflowWrap: "normal" }}>
               Synchronizing <br />
               <span className="not-italic">Challenges.</span>
             </h2>
@@ -278,7 +278,7 @@ export default function CaseStudyLayout({
           </div>
           <div className="space-y-6 lg:pt-10">
             <h4 className="font-black tracking-[0.4em] uppercase text-[11px]" style={{ color: accentColor }}>The Solution</h4>
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none break-normal pr-2 text-foreground" style={{ wordBreak: "normal", overflowWrap: "normal" }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none break-normal pr-2 text-foreground" style={{ wordBreak: "normal", overflowWrap: "normal" }}>
               Resilient <br />
               <span className="text-muted italic">Engineering.</span>
             </h2>
@@ -404,7 +404,7 @@ export default function CaseStudyLayout({
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
               <div className="space-y-8">
                 <h4 className="font-black tracking-[0.4em] uppercase text-[11px]" style={{ color: accentColor }}>Final Outcome</h4>
-                <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none break-normal pr-2 text-foreground" style={{ wordBreak: "normal", overflowWrap: "normal" }}>
+                <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none break-normal pr-2 text-foreground" style={{ wordBreak: "normal", overflowWrap: "normal" }}>
                   Scale <br /> <span className="text-muted italic">& Impact.</span>
                 </h2>
                 <p className="text-muted text-lg leading-relaxed font-medium max-w-lg">
@@ -429,7 +429,7 @@ export default function CaseStudyLayout({
           ) : (
             <div className="max-w-3xl mx-auto text-center space-y-8">
               <h4 className="font-black tracking-[0.4em] uppercase text-[11px]" style={{ color: accentColor }}>Final Outcome</h4>
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none break-normal text-foreground" style={{ wordBreak: "normal", overflowWrap: "normal" }}>
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none break-normal text-foreground" style={{ wordBreak: "normal", overflowWrap: "normal" }}>
                 Scale <span className="text-muted italic">& Impact.</span>
               </h2>
               <p className="text-muted text-lg md:text-xl leading-relaxed font-medium mx-auto max-w-2xl">
