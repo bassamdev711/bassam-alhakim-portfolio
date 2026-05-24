@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  
+  --color-glass-surface: var(--glass-surface);
+  --color-glass-border: var(--glass-border);
+  
+  --color-primary: var(--primary);
+  --color-glow-primary: var(--glow-primary);
+  --color-glow-secondary: var(--glow-secondary);
+  
+  --color-mood-blue: var(--mood-blue);
+  --color-mood-purple: var(--mood-purple);
+  --color-mood-white: var(--mood-white);
+  
+  --shadow-glass: var(--shadow-glass);
+}
+
+@layer base {
+  /* ─────────────────────────────────────────────
+     DESIGN SYSTEM — DARK LUXURY (Primary Experience)
+  ───────────────────────────────────────────── */
+  :root, [data-theme="dark"] {
+    /* Base Colors - Dark Luxury */
+    --background: #020202;
+    --foreground: rgba(255, 255, 255, 0.95);
+    --muted: rgba(255, 255, 255, 0.5); /* neutral-400 equivalent */
+    --subtle: rgba(255, 255, 255, 0.2);
+    
+    /* Brand & Glow - Deep & Neon */
+    --primary: #0055ff;
+    --glow-primary: rgba(0, 85, 255, 0.45);
+    --glow-secondary: rgba(147, 51, 234, 0.4);
+    --cursor-glow: rgba(0, 85, 255, 0.08);
+    --spotlight-color: rgba(255, 255, 255, 0.03);
+    
+    /* Glassmorphism - Transparent & Light-bordered */
+    --glass-surface: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-fallback: #111111;
+    --shadow-glass: 0 20px 40px rgba(0, 0, 0, 0.6);
+    
+    /* Atmosphere */
+    --noise-opacity: 0.02;
+    --grid-color: rgba(255, 255, 255, 0.02);
+    
+    /* Section Moods */
+    --mood-blue: rgba(0, 85, 255, 0.15);
+    --mood-purple: rgba(147, 51, 234, 0.12);
+    --mood-white: rgba(255, 255, 255, 0.08);
+    
+    /* Scrollbar */
+    --scrollbar-thumb: #1a1a1a;
+    --scrollbar-hover: var(--primary);
+  }
+
+  /* ─────────────────────────────────────────────
+     LUXURY LIGHT THEME (Contrast-Focused)
+  ───────────────────────────────────────────── */
+  [data-theme="light"] {
+    /* Base Colors - Warm Stone (Hierarchy over Opacity) */
+    --background: #f5f5f4; 
+    --foreground: #1c1917; /* stone-900 for primary contrast */
+    --muted: #44403c;      /* stone-700 for secondary narrative */
+    --subtle: #78716c;     /* stone-500 for labels and icons */
+    
+    /* Brand & Glow - Saturated & Visible */
+    --primary: #2563eb;    /* Deeper blue for visibility */
+    --glow-primary: rgba(37, 99, 235, 0.18);
+    --glow-secondary: rgba(124, 58, 237, 0.12);
+    --cursor-glow: rgba(37, 99, 235, 0.06);
+    --spotlight-color: rgba(37, 99, 235, 0.03);
+    
+    /* Glassmorphism - More Mass, Less Blur, Better Shadows */
+    --glass-surface: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(28, 25, 23, 0.05);
+    --glass-fallback: #e7e5e4;
+    --shadow-glass: 0 15px 35px rgba(28, 25, 23, 0.08), 0 5px 15px rgba(0, 0, 0, 0.03);
+    
+    /* Atmosphere */
+    --noise-opacity: 0.035; 
+    --grid-color: rgba(28, 25, 23, 0.04);
+    
+    /* Section Moods - Saturated for Contrast */
+    --mood-blue: rgba(37, 99, 235, 0.06);
+    --mood-purple: rgba(124, 58, 237, 0.05);
+    --mood-white: rgba(255, 255, 255, 0.6);
+    
+    /* Scrollbar */
+    --scrollbar-thumb: #d6d3d1;
+    --scrollbar-hover: var(--primary);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   BASE STYLES
+───────────────────────────────────────────── */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* Cinematic environment transition */
+  transition: background-color 700ms ease, color 700ms ease;
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY OVERFLOW PROTECTION
+   Prevents large bold/uppercase text from being
+   clipped at container edges (overflow-hidden +
+   font-black + tracking-tight combination).
+   Does NOT affect visual appearance.
+───────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
+}
+
+/* Flex & Grid children: prevent implicit overflow shrinking */
+* {
+  min-width: 0;
+}
+
+/* ─────────────────────────────────────────────
+   UTILITIES
+───────────────────────────────────────────── */
+@layer utilities {
+  .glass-panel {
+    background-color: var(--glass-surface);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-glass);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    transition: background-color 700ms ease, border-color 700ms ease, box-shadow 700ms ease;
+  }
+
+  @supports not (backdrop-filter: blur(16px)) {
+    .glass-panel {
+      background-color: var(--glass-fallback);
+    }
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 40px var(--primary-glow);
+  }
+
+  .dynamic-grid {
+    background-size: 50px 50px;
+    background-image: 
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  }
+  
+  .spotlight {
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      var(--spotlight-color),
+      transparent 40%
+    );
+  }
+}
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { 
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+  transition: background 300ms ease;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-hover); }
+
+/* ─────────────────────────────────────────────
+   NOISE OVERLAY
+───────────────────────────────────────────── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: var(--noise-opacity);
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 9999;
+  transition: opacity 700ms ease;
+}
+
+/* ─────────────────────────────────────────────
+   LIGHT MODE — Background ambient
+───────────────────────────────────────────── */
+[data-theme="light"] body {
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 68, 221, 0.04), transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(109, 40, 217, 0.03), transparent 40%);
+  background-attachment: fixed;
+}
