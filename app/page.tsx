@@ -116,8 +116,8 @@ export default function PortfolioPage() {
               transition={{ delay: 0.2 }}
               className="text-xl md:text-2xl text-muted font-medium leading-relaxed tracking-tight italic max-w-xl"
             >
-              Architecting high-performance systems with <br />
-              <span className="text-foreground not-italic font-black italic">cinematic precision.</span>
+              UI/UX Engineering <br />
+              <span className="text-foreground not-italic font-black italic">Crafting seamless digital experiences with modern, scalable architecture.</span>
             </motion.p>
 
             <motion.div 
@@ -126,7 +126,7 @@ export default function PortfolioPage() {
                transition={{ delay: 0.4 }}
                className="flex flex-wrap justify-center lg:justify-start gap-4 pt-6"
             >
-              {["Next.js", "Laravel", "PostgreSQL", "Systems Architecture"].map((tag, i) => (
+              {["User Experience", "Interface Design", "Systems Design", "Performance Engineering"].map((tag, i) => (
                 <span key={i} className="text-[10px] font-black uppercase tracking-[0.2em] text-muted border-r border-glass-border pr-4 last:border-0">
                   {tag}
                 </span>
@@ -339,7 +339,7 @@ export default function PortfolioPage() {
             >
               {/* Primary CTA */}
               <motion.a
-                href="mailto:boosalshamiri124354@gmail.com"
+                href="mailto:bassam.alhakim.dev@gmail.com"
                 whileHover={{ scale: 1.05, y: -4 }}
                 whileTap={{ scale: 0.97 }}
                 className="group flex items-center gap-3 px-10 py-5 bg-primary hover:bg-primary/90 rounded-full text-white font-black text-sm uppercase tracking-widest transition-colors duration-500 shadow-[0_0_40px_var(--glow-primary)] hover:shadow-[0_0_60px_var(--glow-primary)]"
@@ -419,8 +419,9 @@ export default function PortfolioPage() {
               >
                 <LinkedinIcon />
               </a>
-              <a href="mailto:boosalshamiri124354@gmail.com" className="text-muted hover:text-foreground transition-colors duration-300">
+              <a href="mailto:bassam.alhakim.dev@gmail.com" className="flex items-center gap-2 text-muted hover:text-foreground transition-colors duration-300">
                 <Mail size={18} />
+                <span className="text-[11px] font-bold tracking-widest uppercase">bassam.alhakim.dev@gmail.com</span>
               </a>
               <a href="tel:780500363" className="text-muted hover:text-foreground transition-colors duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>

@@ -14,10 +14,16 @@ export default function WiFiMonitorGallery({ accentColor = "#06b6d4" }: WiFiMoni
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   const images = [
-    { src: "/images/projects/wifi-monitor/screenshot1.jpg", label: "01" },
-    { src: "/images/projects/wifi-monitor/screenshot2.jpg", label: "02" },
-    { src: "/images/projects/wifi-monitor/screenshot3.jpg", label: "03" },
-    { src: "/images/projects/wifi-monitor/screenshot4.jpg", label: "04" },
+    { src: "/images/projects/wifi-monitor/photo_1_2026-05-25_11-41-18.jpg", label: "01" },
+    { src: "/images/projects/wifi-monitor/photo_2_2026-05-25_11-41-18.jpg", label: "02" },
+    { src: "/images/projects/wifi-monitor/photo_3_2026-05-25_11-41-18.jpg", label: "03" },
+    { src: "/images/projects/wifi-monitor/photo_4_2026-05-25_11-41-18.jpg", label: "04" },
+    { src: "/images/projects/wifi-monitor/photo_5_2026-05-25_11-41-18.jpg", label: "05" },
+    { src: "/images/projects/wifi-monitor/photo_6_2026-05-25_11-41-18.jpg", label: "06" },
+    { src: "/images/projects/wifi-monitor/photo_7_2026-05-25_11-41-18.jpg", label: "07" },
+    { src: "/images/projects/wifi-monitor/photo_8_2026-05-25_11-41-18.jpg", label: "08" },
+    { src: "/images/projects/wifi-monitor/photo_9_2026-05-25_11-41-18.jpg", label: "09" },
+    { src: "/images/projects/wifi-monitor/photo_10_2026-05-25_11-41-18.jpg", label: "10" },
   ];
 
   const total = images.length;

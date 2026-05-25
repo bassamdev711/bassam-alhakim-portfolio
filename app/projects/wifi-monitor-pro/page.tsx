@@ -29,7 +29,7 @@ export default function WiFiMonitorProPage() {
   ];
 
   const images = {
-    hero: "/images/projects/wifi-monitor/screenshot4.jpg",
+    hero: "/images/projects/wifi-monitor/photo_1_2026-05-25_11-41-18.jpg",
     gallery: []
   };
 
@@ -48,7 +48,7 @@ export default function WiFiMonitorProPage() {
       stats={stats}
       engineeringSummary="The result is a highly optimized systems tool that bridges low-level Android kernel APIs with an ultra-premium Flutter interface while maintaining a near-zero battery footprint."
       githubUrl="https://github.com/bassamdev711/wifi-monitor-pro.git"
-      downloadUrl="https://github.com/bassamdev711/wifi-monitor-pro/releases/download/v1.0.0/WiFi_Monitor_Pro.apk"
+      downloadUrl="https://github.com/bassamdev711/wifi-monitor-pro/releases/tag/v1.1.0"
       images={images}
       heroStyle="phone"
       customGallery={<WiFiMonitorGallery accentColor="#06b6d4" />}
