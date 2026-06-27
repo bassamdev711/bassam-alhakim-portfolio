@@ -474,7 +474,7 @@ export default function PortfolioPage() {
 
               {/* Tertiary CTA */}
               <motion.a
-                href="https://www.linkedin.com/in/bassam-alyamani-b4007a40b"
+                href="https://www.linkedin.com/in/bassam-al-hakim-b4007a40b"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, y: -4 }}
