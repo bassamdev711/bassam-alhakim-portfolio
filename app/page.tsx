@@ -32,15 +32,18 @@ export default function PortfolioPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-  const [isColorized, setIsColorized] = useState(false);
-  
   // Mouse Tracking for Parallax & Spotlight
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Parallax Transform for Portrait
-  const portraitX = useTransform(mouseX, [0, 2000], [15, -15]);
-  const portraitY = useTransform(mouseY, [0, 1000], [15, -15]);
+  // Mouse Tracking for ID Badge Tilt & Sway
+  const rawRotateZ = useTransform(mouseX, [0, 2000], [-3, 3]);
+  const rawRotateY = useTransform(mouseX, [0, 2000], [-8, 8]);
+  const rawRotateX = useTransform(mouseY, [0, 1000], [6, -6]);
+
+  const badgeRotateZ = useSpring(rawRotateZ, { stiffness: 60, damping: 20 });
+  const badgeRotateY = useSpring(rawRotateY, { stiffness: 60, damping: 20 });
+  const badgeRotateX = useSpring(rawRotateX, { stiffness: 60, damping: 20 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -134,48 +137,109 @@ export default function PortfolioPage() {
             </motion.div>
           </div>
 
-          {/* RIGHT SIDE: Cinematic Portrait Experience */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9, x: 50 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            style={{ x: portraitX, y: portraitY }}
-            className="flex-1 relative group cursor-pointer"
-            onClick={() => setIsColorized(!isColorized)}
-          >
-            {/* Cinematic Glow Behind Portrait */}
-            <div className="absolute inset-0 bg-mood-blue rounded-full blur-[100px] animate-pulse" />
+          {/* RIGHT SIDE: Suspended ID Badge Experience */}
+          <div className="flex-1 relative flex flex-col items-center justify-start pt-4 lg:-mt-12 z-30">
             
-            {/* Floating Glass Frame */}
-            <div className="relative z-10 w-[300px] h-[400px] md:w-[450px] md:h-[600px] mx-auto rounded-[3rem] overflow-hidden border border-glass-border glass-panel">
-              <motion.img 
-                src="/developer.jpg"
-                alt="Bassam Alhakim"
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className={`w-full h-full object-cover transition-all duration-700 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 ${isColorized ? 'grayscale-0 contrast-100 brightness-100' : 'grayscale contrast-125 brightness-75'}`}
-              />
-              
-              {/* Gradient Mask (Melting into background) */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
-              <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/40" />
-              
-              {/* Internal Glass Reflection Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent pointer-events-none" />
+            {/* Cinematic Glow Behind Badge */}
+            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[500px] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none animate-pulse" />
+
+            {/* Lanyard Strap Extending Upwards */}
+            <div className="absolute -top-[450px] w-9 h-[480px] bg-gradient-to-b from-neutral-900 via-neutral-800 to-neutral-900 border-x border-white/10 shadow-2xl flex flex-col items-center justify-end pb-6 select-none pointer-events-none overflow-hidden z-20">
+              <div className="absolute inset-y-0 left-1.5 right-1.5 border-x border-white/5 pointer-events-none" />
+              <div style={{ writingMode: "vertical-rl" }} className="tracking-[0.3em] text-[10px] font-black text-white/40 uppercase rotate-180 py-4">
+                BASSAM • FULL STACK • 2026 • VIP ACCESS
+              </div>
             </div>
 
-            {/* Decorative Particles / Glow */}
+            {/* Metallic Clip Attaching Strap to Badge */}
+            <div className="relative z-30 -mb-2.5 w-10 flex flex-col items-center pointer-events-none drop-shadow-md">
+              <div className="w-5 h-4 bg-gradient-to-b from-neutral-400 via-neutral-300 to-neutral-600 rounded-t-sm border border-white/40 shadow-sm" />
+              <div className="w-7 h-5 bg-gradient-to-b from-neutral-300 via-neutral-500 to-neutral-800 rounded-md border border-white/50 shadow-md flex items-center justify-center">
+                <div className="w-3.5 h-1.5 bg-black/70 rounded-full shadow-inner" />
+              </div>
+            </div>
+
+            {/* Swinging Badge Container */}
             <motion.div 
-              animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-10 -right-10 w-40 h-40 bg-mood-blue rounded-full blur-[60px]" 
-            />
-            <motion.div 
-              animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
-              transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -top-10 -left-10 w-32 h-32 bg-mood-purple rounded-full blur-[60px]" 
-            />
-          </motion.div>
+              style={{ 
+                rotateZ: badgeRotateZ, 
+                rotateY: badgeRotateY, 
+                rotateX: badgeRotateX,
+                transformPerspective: 1200,
+                transformOrigin: "50% 0%"
+              }}
+              animate={{ 
+                y: [0, -6, 0],
+                rotateZ: [-1, 1.5, -1]
+              }}
+              transition={{ 
+                y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                rotateZ: { duration: 7, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className="relative z-20 w-[300px] sm:w-[340px] rounded-[2.2rem] bg-neutral-950/85 backdrop-blur-2xl border border-white/20 p-5 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(37,99,235,0.15)] flex flex-col items-center group select-none hover:border-blue-500/50 transition-all duration-500"
+            >
+              {/* Badge Punch Hole */}
+              <div className="w-14 h-3.5 rounded-full bg-background border border-white/20 mb-4 shadow-inner flex items-center justify-center">
+                <div className="w-10 h-1 bg-black/80 rounded-full" />
+              </div>
+
+              {/* Conference Header Bar */}
+              <div className="w-full flex items-center justify-between px-3.5 py-2.5 bg-blue-600/15 border border-blue-500/30 rounded-xl mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+                  <span className="text-[10px] font-black tracking-widest text-blue-400 uppercase">TECH CONF 2026</span>
+                </div>
+                <span className="text-[10px] font-mono font-bold text-muted-foreground/80">SPEAKER</span>
+              </div>
+
+              {/* Photo Container */}
+              <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden border border-white/15 relative shadow-inner bg-neutral-900 mb-5 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.2)] transition-shadow duration-500">
+                <img 
+                  src="/developer.jpg"
+                  alt="Bassam Alhakim ID"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
+                
+                {/* Overlay Badge Tag on Photo */}
+                <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/15 text-[9px] font-mono text-white/90 shadow-lg">
+                  ID: #BA-711
+                </div>
+              </div>
+
+              {/* Badge Details Section */}
+              <div className="w-full text-left space-y-3 px-1">
+                <div>
+                  <h3 className="text-xl font-black tracking-tight text-white uppercase leading-tight">Bassam Alhakim</h3>
+                  <p className="text-xs font-semibold text-blue-400 tracking-wider uppercase mt-0.5">Senior Full Stack Engineer</p>
+                </div>
+
+                <div className="h-[1px] w-full bg-white/10 my-2" />
+
+                <div className="flex items-center justify-between text-[10px] font-mono text-muted">
+                  <div className="flex flex-col">
+                    <span className="text-[8px] text-muted/60 uppercase tracking-wider">Access Level</span>
+                    <span className="text-foreground font-bold">ALL AREAS (VIP)</span>
+                  </div>
+                  <div className="flex flex-col text-right">
+                    <span className="text-[8px] text-muted/60 uppercase tracking-wider">Clearance</span>
+                    <span className="text-emerald-400 font-bold flex items-center justify-end gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> VERIFIED
+                    </span>
+                  </div>
+                </div>
+
+                {/* Simulated Barcode Section */}
+                <div className="pt-2 flex items-center justify-between gap-3 opacity-75 group-hover:opacity-100 transition-opacity">
+                  <div className="h-7 flex-1 flex items-center justify-between gap-[2px] bg-white/5 px-2.5 py-1 rounded-lg border border-white/10 font-mono overflow-hidden">
+                    {[3,1,4,2,1,2,4,1,3,2,1,4,2,3,1,2,1,4,2,1,3,2,4,1].map((w, idx) => (
+                      <div key={idx} className="h-full bg-white/80" style={{ width: `${w}px` }} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </header>
 
         {/* Philosophy Section */}
