@@ -523,7 +523,7 @@ export default function PortfolioPage() {
                 <GithubIcon />
               </a>
               <a
-                href="https://www.linkedin.com/in/bassam-alyamani-b4007a40b"
+                href="https://www.linkedin.com/in/bassam-al-hakim-b4007a40b"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted hover:text-foreground transition-colors duration-300"
