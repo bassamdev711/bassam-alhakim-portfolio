@@ -90,8 +90,8 @@ export default function PortfolioPage() {
         {/* HERO SECTION (Split Layout) */}
         <header id="home" className="relative min-h-[85vh] flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20 pt-20 mb-40">
           
-          {/* LEFT SIDE: Identity Text */}
-          <div className="flex-1 space-y-10 text-center lg:text-left z-20">
+          {/* LEFT SIDE: Identity Text (Order 2 on Mobile, Order 1 on Desktop) */}
+          <div className="flex-1 space-y-10 text-center lg:text-left z-20 order-2 lg:order-1">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -137,25 +137,38 @@ export default function PortfolioPage() {
             </motion.div>
           </div>
 
-          {/* RIGHT SIDE: Suspended ID Badge Experience */}
-          <div className="flex-1 relative flex flex-col items-center justify-start pt-4 lg:-mt-12 z-30">
-            
+          {/* RIGHT SIDE: Suspended ID Badge Experience (Order 1 on Mobile, Order 2 on Desktop) */}
+          <motion.div 
+            initial={{ y: -500, opacity: 0, rotateZ: 8 }}
+            animate={{ y: 0, opacity: 1, rotateZ: 0 }}
+            transition={{ type: "spring", damping: 14, stiffness: 80, mass: 1 }}
+            className="flex-1 relative flex flex-col items-center justify-start pt-4 lg:-mt-12 z-30 order-1 lg:order-2"
+          >
             {/* Cinematic Glow Behind Badge */}
             <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[500px] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none animate-pulse" />
 
-            {/* Lanyard Strap Extending Upwards */}
-            <div className="absolute -top-[450px] w-9 h-[480px] bg-gradient-to-b from-neutral-900 via-neutral-800 to-neutral-900 border-x border-white/10 shadow-2xl flex flex-col items-center justify-end pb-6 select-none pointer-events-none overflow-hidden z-20">
-              <div className="absolute inset-y-0 left-1.5 right-1.5 border-x border-white/5 pointer-events-none" />
-              <div style={{ writingMode: "vertical-rl" }} className="tracking-[0.3em] text-[10px] font-black text-white/40 uppercase rotate-180 py-4">
+            {/* Realistic Wavy / Twisted Lanyard Strap Extending Upwards */}
+            <motion.div 
+              animate={{ 
+                rotateZ: [-1, 1.5, -1],
+                skewX: [-1, 1, -1]
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-[450px] w-10 h-[480px] bg-gradient-to-b from-neutral-950 via-neutral-800 to-neutral-900 border-x-2 border-dashed border-white/20 shadow-2xl flex flex-col items-center justify-end pb-6 select-none pointer-events-none z-20 origin-bottom"
+            >
+              {/* Simulated 3D fabric twists/folds using angled diagonal shadow bands */}
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_25%,rgba(255,255,255,0.08)_38%,rgba(0,0,0,0.7)_50%,transparent_62%)] background-size-[100%_140px] opacity-90 pointer-events-none" />
+              <div className="absolute inset-y-0 left-2 right-2 border-x border-white/5 pointer-events-none" />
+              <div style={{ writingMode: "vertical-rl" }} className="tracking-[0.3em] text-[10px] font-black text-white/40 uppercase rotate-180 py-4 z-10">
                 BASSAM • FULL STACK • 2026 • VIP ACCESS
               </div>
-            </div>
+            </motion.div>
 
             {/* Metallic Clip Attaching Strap to Badge */}
-            <div className="relative z-30 -mb-2.5 w-10 flex flex-col items-center pointer-events-none drop-shadow-md">
-              <div className="w-5 h-4 bg-gradient-to-b from-neutral-400 via-neutral-300 to-neutral-600 rounded-t-sm border border-white/40 shadow-sm" />
-              <div className="w-7 h-5 bg-gradient-to-b from-neutral-300 via-neutral-500 to-neutral-800 rounded-md border border-white/50 shadow-md flex items-center justify-center">
-                <div className="w-3.5 h-1.5 bg-black/70 rounded-full shadow-inner" />
+            <div className="relative z-30 -mb-2.5 w-11 flex flex-col items-center pointer-events-none drop-shadow-md">
+              <div className="w-6 h-4 bg-gradient-to-b from-neutral-400 via-neutral-200 to-neutral-600 rounded-t-sm border border-white/50 shadow-sm" />
+              <div className="w-8 h-5 bg-gradient-to-b from-neutral-300 via-neutral-500 to-neutral-800 rounded-md border border-white/60 shadow-md flex items-center justify-center">
+                <div className="w-4 h-1.5 bg-black/75 rounded-full shadow-inner" />
               </div>
             </div>
 
@@ -170,7 +183,7 @@ export default function PortfolioPage() {
               }}
               animate={{ 
                 y: [0, -6, 0],
-                rotateZ: [-1, 1.5, -1]
+                rotateZ: [-1.2, 1.5, -1.2]
               }}
               transition={{ 
                 y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
@@ -239,7 +252,7 @@ export default function PortfolioPage() {
                 </div>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         </header>
 
         {/* Philosophy Section */}
