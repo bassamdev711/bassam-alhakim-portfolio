@@ -12,7 +12,9 @@ import {
   Terminal,
   ExternalLink,
   ChevronRight,
-  ArrowUpRight
+  ArrowUpRight,
+  Download,
+  FileText
 } from "lucide-react";
 import Link from "next/link";
 
@@ -135,6 +137,26 @@ export default function PortfolioPage() {
                 </span>
               ))}
             </motion.div>
+
+            {/* Primary CTA: Download Resume / CV */}
+            <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ delay: 0.5 }}
+               className="pt-8 flex justify-center lg:justify-start"
+            >
+              <a 
+                href="/Bassam_Alhakim_Systems_Engineer_CV.pdf" 
+                target="_blank"
+                rel="noopener noreferrer"
+                download="Bassam_Alhakim_Systems_Engineer_CV.pdf"
+                className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-blue-600/20 hover:bg-blue-600 border border-blue-500/40 hover:border-blue-400 text-white font-bold text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(37,99,235,0.25)] hover:shadow-[0_0_35px_rgba(37,99,235,0.6)] transition-all duration-300 transform hover:-translate-y-0.5 overflow-hidden active:scale-95"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-white/20 to-blue-400/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+                <Download size={18} className="text-blue-400 group-hover:text-white transition-colors animate-bounce" />
+                <span>Download Resume (CV)</span>
+              </a>
+            </motion.div>
           </div>
 
           {/* RIGHT SIDE: Suspended ID Badge Experience (Order 1 on Mobile, Order 2 on Desktop) */}
@@ -242,14 +264,26 @@ export default function PortfolioPage() {
                   </div>
                 </div>
 
-                {/* Simulated Barcode Section */}
-                <div className="pt-2 flex items-center justify-between gap-3 opacity-75 group-hover:opacity-100 transition-opacity">
-                  <div className="h-7 flex-1 flex items-center justify-between gap-[2px] bg-white/5 px-2.5 py-1 rounded-lg border border-white/10 font-mono overflow-hidden">
+                {/* Simulated Barcode Section (Easter Egg CV Download) */}
+                <a 
+                  href="/Bassam_Alhakim_Systems_Engineer_CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download="Bassam_Alhakim_Systems_Engineer_CV.pdf"
+                  title="Click to Download CV.pdf [Easter Egg]"
+                  className="pt-2 flex items-center justify-between gap-3 opacity-75 hover:opacity-100 transition-all cursor-pointer group/barcode block"
+                >
+                  <div className="h-7 flex-1 flex items-center justify-between gap-[2px] bg-white/5 hover:bg-blue-600/20 px-2.5 py-1 rounded-lg border border-white/10 group-hover/barcode:border-blue-500/50 font-mono overflow-hidden relative transition-colors shadow-inner">
                     {[3,1,4,2,1,2,4,1,3,2,1,4,2,3,1,2,1,4,2,1,3,2,4,1].map((w, idx) => (
-                      <div key={idx} className="h-full bg-white/80" style={{ width: `${w}px` }} />
+                      <div key={idx} className="h-full bg-white/80 group-hover/barcode:bg-blue-300 transition-colors" style={{ width: `${w}px` }} />
                     ))}
+                    {/* Hover text overlay */}
+                    <div className="absolute inset-0 bg-black/85 backdrop-blur-sm flex items-center justify-center gap-1.5 opacity-0 group-hover/barcode:opacity-100 transition-opacity duration-300">
+                      <FileText size={12} className="text-blue-400 animate-pulse" />
+                      <span className="text-[9px] font-mono font-bold tracking-widest text-blue-300 uppercase">GET_CV.PDF</span>
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
             </motion.div>
           </motion.div>
