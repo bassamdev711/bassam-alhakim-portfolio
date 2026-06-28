@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     apple: "/developer.jpg",
   },
   verification: {
-    google: "google-site-verification-placeholder",
+    google: "X8QmasHRQfR3Oo14BVSa0kRzrh9hwyJ2_uvPlQxmuMM",
   },
   openGraph: {
     title: "بسام الحكيم | Bassam Alhakim - Product Engineer",
