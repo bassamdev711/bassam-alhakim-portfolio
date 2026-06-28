@@ -17,6 +17,7 @@ import {
   FileText
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 import NavDock from "@/components/nav-dock";
 import ClientIntakeSection from "@/components/sections/client-intake-section";
@@ -229,10 +230,12 @@ export default function PortfolioPage() {
 
               {/* Photo Container */}
               <div className="w-full aspect-[4/5] rounded-2xl overflow-hidden border border-white/15 relative shadow-inner bg-neutral-900 mb-5 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.2)] transition-shadow duration-500">
-                <img 
+                <Image 
                   src="/developer.jpg"
-                  alt="Bassam Alhakim ID"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  alt="Bassam Alhakim - Product Engineer & Full Stack Developer Portfolio ID"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 300px"
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
                 
@@ -487,7 +490,7 @@ export default function PortfolioPage() {
 
               {/* Phone CTA */}
               <motion.a
-                href="tel:78050063"
+                href="tel:+967780500363"
                 whileHover={{ scale: 1.05, y: -4 }}
                 whileTap={{ scale: 0.97 }}
                 className="flex items-center gap-3 px-10 py-5 glass-panel text-foreground border-glass-border hover:border-muted rounded-full font-black text-sm uppercase tracking-widest transition-all duration-500"
