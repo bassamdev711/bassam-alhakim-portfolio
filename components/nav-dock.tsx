@@ -28,6 +28,8 @@ export default function NavDock() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // The mounted flag intentionally gates client-only theme labels.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const handleScroll = () => {
       const sections = NAV_ITEMS.map(item => document.getElementById(item.id));

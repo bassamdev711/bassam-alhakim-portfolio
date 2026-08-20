@@ -123,7 +123,7 @@ ${data.vision}`;
               </h2>
               
               <p className="text-muted text-lg md:text-xl max-w-md leading-relaxed font-medium">
-                Initiate a secure collaboration channel. Provide the architectural blueprint of your vision, and let's engineer a resilient solution.
+                Initiate a secure collaboration channel. Provide the architectural blueprint of your vision, and let&apos;s engineer a resilient solution.
               </p>
             </div>
 

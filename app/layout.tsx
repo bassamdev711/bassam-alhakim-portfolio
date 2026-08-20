@@ -13,10 +13,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://bassam-alhakim-portfolio.vercel.app"),
   title: {
     template: "%s | Bassam Alhakim",
-    default: "بسام الحكيم | Bassam Alhakim - Product Engineer & Full Stack Developer",
+    default: "Bassam Alhakim — Software Engineer & Product Builder",
   },
   description:
-    "معرض أعمال المهندس بسام الحكيم (Bassam Alhakim)، مطور برمجيات ومهندس منتجات رقمية متخصص في بناء الأنظمة المتكاملة وتطبيقات الويب والهواتف الذكية باستخدام Next.js, Flutter, Laravel.",
+    "Bassam Alhakim is a software engineer and product builder focused on reliable architecture, full-stack delivery, expressive interfaces, and digital products that hold up in the real world.",
   keywords: [
     "بسام الحكيم",
     "بسام عبد الحكيم",
@@ -75,13 +75,13 @@ export const metadata: Metadata = {
     google: "X8QmasHRQfR3Oo14BVSa0kRzrh9hwyJ2_uvPlQxmuMM",
   },
   openGraph: {
-    title: "بسام الحكيم | Bassam Alhakim - Product Engineer",
+    title: "Bassam Alhakim — Software Engineer & Product Builder",
     description:
-      "معرض أعمال المهندس بسام الحكيم، مطور برمجيات ومهندس منتجات رقمية متخصص في بناء الأنظمة المتكاملة وتطبيقات Next.js و Flutter و Laravel.",
+      "Software engineer and product builder focused on reliable systems, full-stack delivery, and expressive digital products.",
     url: "https://bassam-alhakim-portfolio.vercel.app",
-    siteName: "Bassam Alhakim Portfolio | معرض أعمال بسام الحكيم",
-    locale: "ar_SA",
-    alternateLocale: ["en_US"],
+    siteName: "Bassam Alhakim — Software Engineer & Product Builder",
+    locale: "en_US",
+    alternateLocale: ["ar_SA"],
     type: "website",
     images: [
       {
@@ -94,9 +94,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "بسام الحكيم | Bassam Alhakim - Product Engineer",
+    title: "Bassam Alhakim — Software Engineer & Product Builder",
     description:
-      "معرض أعمال المهندس بسام الحكيم، مطور برمجيات ومهندس منتجات رقمية متخصص في بناء الأنظمة المتكاملة وتطبيقات Next.js و Flutter و Laravel.",
+      "Software engineer and product builder focused on reliable systems, full-stack delivery, and expressive digital products.",
     images: ["/og-image.png"],
     creator: "@bassamdev711",
   },
@@ -115,9 +115,9 @@ const jsonLd = {
         "Bassam Abdulhakim",
         "Bassam Al Hakim",
       ],
-      jobTitle: "Product Engineer & Software Engineer",
+      jobTitle: "Software Engineer & Product Builder",
       description:
-        "Full Stack Engineer specializing in scalable systems, Next.js, Flutter, and Laravel. مطور برمجيات ومهندس منتجات رقمية.",
+        "Software engineer and product builder specializing in scalable systems, full-stack delivery, Next.js, Flutter, Laravel, and thoughtful digital experiences.",
       url: "https://bassam-alhakim-portfolio.vercel.app",
       image: "https://bassam-alhakim-portfolio.vercel.app/developer.jpg",
       email: "bassam.alhakim.dev@gmail.com",
