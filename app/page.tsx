@@ -6,6 +6,7 @@ import {
   ArrowDown,
   ArrowUpRight,
   Check,
+  ChevronLeft,
   ChevronRight,
   Circle,
   Code2,
@@ -18,7 +19,7 @@ import {
   Server,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function GithubMark({ size = 17 }: { size?: number }) {
   return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>;
@@ -109,6 +110,20 @@ const projects = [
     external: "https://github.com/bassamdev711/doctor",
     accent: "rose",
   },
+  {
+    number: "07",
+    eyebrow: "Offline-first retail / Flutter",
+    title: "A dependable operating layer for the neighborhood store",
+    name: "MATEEN / متين",
+    description: "A Flutter-based store management system built to keep essential work moving without a constant internet connection. The app brings inventory, point of sale, purchasing, customers, suppliers, expenses, reports, and Arabic-first workflows into one focused operating surface, with a LAN display for larger screens.",
+    impact: "Offline-first workflows · Local SQLite persistence · Arabic retail operations · Mobile-to-LAN display",
+    stack: ["Flutter", "Dart", "Riverpod", "Drift / SQLite", "GoRouter", "PDF + Excel"],
+    image: "/portfolio/maten/maten-19.webp",
+    gallery: ["/portfolio/maten/maten-01.webp", "/portfolio/maten/maten-02.webp", "/portfolio/maten/maten-03.webp", "/portfolio/maten/maten-04.webp", "/portfolio/maten/maten-05.webp", "/portfolio/maten/maten-06.webp", "/portfolio/maten/maten-07.webp", "/portfolio/maten/maten-08.webp", "/portfolio/maten/maten-09.webp", "/portfolio/maten/maten-10.webp", "/portfolio/maten/maten-11.webp", "/portfolio/maten/maten-12.webp", "/portfolio/maten/maten-13.webp", "/portfolio/maten/maten-14.webp", "/portfolio/maten/maten-15.webp", "/portfolio/maten/maten-16.webp", "/portfolio/maten/maten-17.webp", "/portfolio/maten/maten-18.webp", "/portfolio/maten/maten-19.webp"],
+    live: "https://github.com/bassamdev711/baqkah",
+    external: "https://github.com/bassamdev711/baqkah",
+    accent: "cyan",
+  },
 ] as const;
 
 const capabilities = [
@@ -121,9 +136,32 @@ const technologies = ["Next.js", "TypeScript", "React Three Fiber", "Prisma", "P
 
 export default function PortfolioPage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeGallery, setActiveGallery] = useState<(typeof projects)[number] | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   const closeMenu = () => setMenuOpen(false);
+  const openGallery = (project: (typeof projects)[number], imageIndex = 0) => {
+    setActiveGallery(project);
+    setActiveImageIndex(imageIndex);
+  };
+  const closeGallery = () => setActiveGallery(null);
+
+  useEffect(() => {
+    if (!activeGallery) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeGallery();
+      if (event.key === "ArrowLeft") setActiveImageIndex((current) => current === 0 ? activeGallery.gallery.length - 1 : current - 1);
+      if (event.key === "ArrowRight") setActiveImageIndex((current) => current === activeGallery.gallery.length - 1 ? 0 : current + 1);
+    };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeGallery]);
 
   return (
     <main className="site-shell">
@@ -157,14 +195,21 @@ export default function PortfolioPage() {
 
       <section id="approach" className="approach-section section-frame"><div className="section-kicker"><span>02</span><span>How I work</span></div><div className="section-heading-row"><div><p className="eyebrow">A practical point of view</p><h2>Clarity first.<br /><span>Craft always.</span></h2></div><p className="section-intro">The strongest products are not just functional. They make the next decision obvious, the system dependable, and the experience worth returning to.</p></div><div className="capability-grid">{capabilities.map((capability, index) => { const Icon = capability.icon; return <motion.article key={capability.title} className="capability-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.55, delay: index * 0.08 }}><span className="card-number">0{index + 1}</span><Icon size={23} strokeWidth={1.5} /><h3>{capability.title}</h3><p>{capability.description}</p><span className="card-arrow"><ChevronRight size={16} /></span></motion.article>; })}</div><div className="tech-strip"><span className="tech-label">Working toolkit</span><div className="tech-list">{technologies.map((technology) => <span key={technology}>{technology}</span>)}</div></div></section>
 
-      <section id="work" className="work-section section-frame"><div className="section-kicker"><span>03</span><span>Selected work</span></div><div className="section-heading-row work-heading"><div><p className="eyebrow">Six shipped digital experiences</p><h2>Selected<br /><span>systems.</span></h2></div><p className="section-intro">A focused portfolio of commerce, healthcare, and home-technology products — each one designed, engineered, and connected to a live experience.</p></div><div className="project-list">{projects.map((project, index) => <ProjectCard key={project.name} project={project} index={index} />)}</div><div className="all-work-row"><span>15 public repositories on GitHub</span><a href="https://github.com/bassamdev711?tab=repositories" target="_blank" rel="noreferrer" className="text-link">View all repositories <ExternalLink size={15} /></a></div></section>
+      <section id="work" className="work-section section-frame"><div className="section-kicker"><span>03</span><span>Selected work</span></div><div className="section-heading-row work-heading"><div><p className="eyebrow">Seven shipped digital experiences</p><h2>Selected<br /><span>systems.</span></h2></div><p className="section-intro">A focused portfolio of commerce, healthcare, and home-technology products — each one designed, engineered, and connected to a live experience.</p></div><div className="project-list">{projects.map((project, index) => <ProjectCard key={project.name} project={project} index={index} onOpenGallery={openGallery} />)}</div><div className="all-work-row"><span>15 public repositories on GitHub</span><a href="https://github.com/bassamdev711?tab=repositories" target="_blank" rel="noreferrer" className="text-link">View all repositories <ExternalLink size={15} /></a></div></section>
 
       <section id="contact" className="contact-section section-frame"><div className="contact-panel"><div className="contact-topline"><span>04 / Contact</span><span>Open to the right challenge</span></div><div className="contact-content"><p className="eyebrow"><span className="eyebrow-line" /> Start a conversation</p><h2>Have a complex idea?<br /><span>Let&apos;s give it shape.</span></h2><p>Whether you need a product from zero, a stronger technical foundation, or a second pair of eyes on a difficult system, I&apos;d be glad to hear what you&apos;re building.</p><a href="mailto:bassam.alhakim.dev@gmail.com" className="button button-light">bassam.alhakim.dev@gmail.com <ArrowUpRight size={17} /></a></div><div className="contact-links"><a href="https://github.com/bassamdev711" target="_blank" rel="noreferrer"><GithubMark size={17} /> GitHub</a><a href="https://www.linkedin.com/in/bassam-al-hakim-b4007a40b" target="_blank" rel="noreferrer"><BriefcaseBusiness size={17} /> LinkedIn</a><a href="tel:+967780500363"><Phone size={17} /> +967 780 500 363</a></div></div></section>
       <footer className="site-footer section-frame"><div className="footer-brand"><span className="brand-symbol">BA</span><span>© 2026 Bassam Alhakim</span></div><span>Designed, engineered, and shipped with intent.</span><a href="#top" className="footer-top">Back to top <ArrowUpRight size={15} /></a></footer>
+      {activeGallery ? <ProjectGalleryModal project={activeGallery} activeIndex={activeImageIndex} onClose={closeGallery} onPrevious={() => setActiveImageIndex((current) => current === 0 ? activeGallery.gallery.length - 1 : current - 1)} onNext={() => setActiveImageIndex((current) => current === activeGallery.gallery.length - 1 ? 0 : current + 1)} onSelect={setActiveImageIndex} /> : null}
     </main>
   );
 }
 
-function ProjectCard({ project, index }: { project: (typeof projects)[number]; index: number }) {
-  return <motion.article className={`project-card project-${project.accent}`} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.18 }} transition={{ duration: 0.65, delay: index * 0.06 }}><div className="project-visual"><Image src={project.image} alt={`${project.name} project preview`} fill sizes="(max-width: 900px) 100vw, 42vw" className="project-cover" /><div className="project-visual-scrim" /><span className="visual-label">CASE / {project.number}</span><div className="project-gallery" aria-label={`${project.name} additional previews`}>{project.gallery.map((image) => <Image key={image} src={image} alt="" width={92} height={72} className="project-gallery-image" />)}</div></div><div className="project-details"><div className="project-topline"><span>{project.eyebrow}</span><span>{project.number}</span></div><h3>{project.name}</h3><p className="project-title">{project.title}</p><p className="project-description">{project.description}</p><p className="project-impact"><Check size={15} /> {project.impact}</p><div className="project-bottom"><div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links"><a href={project.live} target="_blank" rel="noreferrer" className="text-link">Visit live site <ArrowUpRight size={15} /></a><a href={project.external} target="_blank" rel="noreferrer" aria-label={`View ${project.name} source on GitHub`}><GithubMark size={17} /></a></div></div></div></motion.article>;
+function ProjectCard({ project, index, onOpenGallery }: { project: (typeof projects)[number]; index: number; onOpenGallery: (project: (typeof projects)[number], imageIndex?: number) => void }) {
+  return <motion.article className={`project-card project-${project.accent}`} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.18 }} transition={{ duration: 0.65, delay: index * 0.06 }}><div className="project-visual"><Image src={project.image} alt={`${project.name} project preview`} fill sizes="(max-width: 900px) 100vw, 42vw" className="project-cover" /><div className="project-visual-scrim" /><span className="visual-label">CASE / {project.number}</span><div className="project-gallery" aria-label={`${project.name} additional previews`}>{project.gallery.slice(0, 3).map((image, imageIndex) => <button key={image} type="button" className="project-gallery-button" onClick={() => onOpenGallery(project, imageIndex)} aria-label={`Open ${project.name} screen ${imageIndex + 1}`}><Image src={image} alt="" width={92} height={72} className="project-gallery-image" /></button>)}</div></div><div className="project-details"><div className="project-topline"><span>{project.eyebrow}</span><span>{project.number}</span></div><h3>{project.name}</h3><p className="project-title">{project.title}</p><p className="project-description">{project.description}</p><p className="project-impact"><Check size={15} /> {project.impact}</p><button type="button" className="gallery-launch" onClick={() => onOpenGallery(project)}><Layers3 size={15} /> View all {project.gallery.length} screens</button>{project.name.includes("MATEEN") ? <div className="inline-gallery" aria-label={`${project.name} full image gallery`}>{project.gallery.map((image, imageIndex) => <a key={image} href={image} target="_blank" rel="noreferrer" className="inline-gallery-item"><Image src={image} alt={`${project.name} screen ${imageIndex + 1}`} width={576} height={1280} className="inline-gallery-photo" /></a>)}</div> : null}<div className="project-bottom"><div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links"><a href={project.live} target="_blank" rel="noreferrer" className="text-link">View project <ArrowUpRight size={15} /></a><a href={project.external} target="_blank" rel="noreferrer" aria-label={`View ${project.name} source on GitHub`}><GithubMark size={17} /></a></div></div></div></motion.article>;
+}
+
+
+function ProjectGalleryModal({ project, activeIndex, onClose, onPrevious, onNext, onSelect }: { project: (typeof projects)[number]; activeIndex: number; onClose: () => void; onPrevious: () => void; onNext: () => void; onSelect: (index: number) => void }) {
+  const activeImage = project.gallery[activeIndex];
+  return <div className="gallery-modal" role="dialog" aria-modal="true" aria-label={`${project.name} image gallery`} onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}><div className="gallery-modal-panel"><div className="gallery-modal-header"><div><span className="gallery-modal-kicker">{project.name} / Full gallery</span><h2>{project.gallery.length} product screens</h2></div><button type="button" className="gallery-close" onClick={onClose} aria-label="Close image gallery"><X size={20} /></button></div><div className="gallery-modal-stage"><button type="button" className="gallery-nav gallery-nav-previous" onClick={onPrevious} aria-label="Previous screen"><ChevronLeft size={22} /></button><div className="gallery-modal-image"><Image src={activeImage} alt={`${project.name} screen ${activeIndex + 1}`} fill sizes="(max-width: 700px) 88vw, 560px" className="gallery-modal-photo" priority /></div><button type="button" className="gallery-nav gallery-nav-next" onClick={onNext} aria-label="Next screen"><ChevronRight size={22} /></button></div><div className="gallery-modal-meta"><span>{String(activeIndex + 1).padStart(2, "0")} / {String(project.gallery.length).padStart(2, "0")}</span><span>Use ← → to browse · Esc to close</span></div><div className="gallery-modal-thumbs" aria-label="Gallery thumbnails">{project.gallery.map((image, imageIndex) => <button type="button" key={image} className={`gallery-thumb ${activeIndex === imageIndex ? "is-active" : ""}`} onClick={() => onSelect(imageIndex)} aria-label={`Show ${project.name} screen ${imageIndex + 1}`} aria-current={activeIndex === imageIndex ? "true" : undefined}><Image src={image} alt="" fill sizes="64px" className="gallery-thumb-image" /></button>)}</div></div></div>;
 }
