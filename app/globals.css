@@ -135,16 +135,19 @@ button { font: inherit; }
 .all-work-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-top: 1.5rem; color: var(--faint); font-size: .58rem; }
 
 .contact-section { padding-bottom: 5rem; }
-.contact-panel { padding: 1.6rem 2.2rem 2.2rem; color: #0b1119; background: var(--blue); }
-.contact-topline { display: flex; justify-content: space-between; padding-bottom: 5.5rem; color: rgba(8,17,31,.58); border-bottom: 1px solid rgba(8,17,31,.2); font-size: .6rem; }
-.contact-content { max-width: 760px; padding: 5rem 0 5rem; }
-.contact-content .eyebrow { color: #162f69; }
-.contact-content h2 { color: #08111f; }
-.contact-content h2 span { color: #f0f3f7; }
-.contact-content > p:not(.eyebrow) { max-width: 540px; margin: 1.7rem 0 2rem; color: rgba(8,17,31,.7); font-size: .98rem; line-height: 1.8; }
-.contact-links { display: flex; flex-wrap: wrap; gap: 1.4rem 2rem; padding-top: 1.2rem; border-top: 1px solid rgba(8,17,31,.2); }
-.contact-links a { display: inline-flex; align-items: center; gap: .5rem; color: rgba(8,17,31,.72); font-family: 'DM Mono', monospace; font-size: .62rem; }
-.contact-links a:hover { color: #08111f; }
+.contact-panel { position: relative; overflow: hidden; padding: 1.6rem 2.2rem 2.2rem; color: var(--ink); border: 1px solid rgba(127,169,255,.34); background: radial-gradient(circle at 88% 8%, rgba(64,124,255,.2), transparent 34%), linear-gradient(145deg, #14213a 0%, #0d1524 54%, #0a0f18 100%); box-shadow: 0 28px 90px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.06); }
+.contact-panel::after { content: ''; position: absolute; right: -12%; bottom: -55%; width: 46%; aspect-ratio: 1; border: 1px solid rgba(114,217,231,.16); border-radius: 50%; box-shadow: 0 0 0 28px rgba(114,217,231,.025), 0 0 0 56px rgba(114,217,231,.018); pointer-events: none; }
+.contact-topline { display: flex; justify-content: space-between; padding-bottom: 5.5rem; color: var(--faint); border-bottom: 1px solid rgba(235,240,247,.14); font-size: .6rem; }
+.contact-content { position: relative; z-index: 1; max-width: 760px; padding: 5rem 0 5rem; }
+.contact-content .eyebrow { color: var(--blue); }
+.contact-content h2 { color: var(--ink); }
+.contact-content h2 span { color: var(--blue); }
+.contact-content > p:not(.eyebrow) { max-width: 540px; margin: 1.7rem 0 2rem; color: var(--muted); font-size: .98rem; line-height: 1.8; }
+.contact-links { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 1.4rem 2rem; padding-top: 1.2rem; border-top: 1px solid rgba(235,240,247,.14); }
+.contact-links a { display: inline-flex; align-items: center; gap: .5rem; color: var(--muted); font-family: 'DM Mono', monospace; font-size: .62rem; }
+.contact-links a:hover { color: var(--ink); }
+.contact-panel .button-light { color: #08111f; background: var(--ink); }
+.contact-panel .button-light:hover { color: #08111f; background: var(--blue); }
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 90px; color: var(--faint); font-size: .58rem; }
 .footer-brand { font-family: 'Manrope', sans-serif; text-transform: none; letter-spacing: 0; color: var(--muted); }
 .footer-brand .brand-symbol { width: 28px; height: 28px; font-size: .55rem; }
