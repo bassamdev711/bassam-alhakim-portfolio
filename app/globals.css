@@ -537,3 +537,38 @@ button { font: inherit; }
   .orasoft-image-6 { grid-column: 4; grid-row: 2; }
   .orasoft-image img { padding: .2rem; }
 } 
+
+
+/* Locale-aware layout: keep geometry logical so Arabic is a true RTL experience. */
+.language-switch { display: inline-flex; align-items: center; gap: .38rem; min-height: 34px; padding: 0 .7rem; color: var(--ink); border: 1px solid var(--line); background: rgba(255,255,255,.035); font-family: var(--font-dm-mono), monospace; font-size: .58rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease; }
+.language-switch:hover { color: var(--blue); border-color: var(--blue); background: var(--blue-wash); transform: translateY(-2px); }
+.project-detail-header-actions { display: inline-flex; align-items: center; gap: 1rem; }
+.project-detail-header-actions .language-switch { min-height: 30px; }
+[dir="rtl"] .scroll-progress { transform-origin: right; }
+[dir="rtl"] .main-nav { margin-left: 1rem; margin-right: auto; }
+[dir="rtl"] .hero-grid-line { right: 55%; left: auto; }
+[dir="rtl"] .hero-index { right: 0; left: auto; }
+[dir="rtl"] .card-number { right: auto; left: 1.8rem; }
+[dir="rtl"] .card-arrow { right: auto; left: 1.7rem; transform: scaleX(-1); }
+[dir="rtl"] .visual-label { right: 1.25rem; left: auto; }
+[dir="rtl"] .project-visual { border-right: 0; border-left: 1px solid var(--line); }
+[dir="rtl"] .project-gallery { right: auto; left: 1.25rem; }
+[dir="rtl"] .gallery-nav-previous, [dir="rtl"] .project-slider-prev { left: auto; right: .6rem; }
+[dir="rtl"] .gallery-nav-next, [dir="rtl"] .project-slider-next { right: auto; left: .6rem; }
+[dir="rtl"] .project-detail-gallery figcaption { right: auto; left: .8rem; }
+[dir="rtl"] .orasoft-process span { padding-left: 1.1rem; padding-right: 0; border-right: 0; border-left: 1px solid rgba(239,190,120,.16); }
+[dir="rtl"] .orasoft-process span:not(:first-child) { padding-right: 1.1rem; padding-left: 1.1rem; }
+[dir="rtl"] .orasoft-process span:last-child { border-left: 0; }
+@media (max-width: 900px) {
+  [dir="rtl"] .project-visual { border-left: 0; }
+  [dir="rtl"] .gallery-nav-previous, [dir="rtl"] .project-slider-prev { right: .45rem; }
+  [dir="rtl"] .gallery-nav-next, [dir="rtl"] .project-slider-next { left: .45rem; }
+}
+@media (max-width: 640px) {
+  .language-switch span { display: none; }
+  .language-switch { padding: 0 .55rem; }
+  .project-detail-header-actions { width: 100%; justify-content: space-between; }
+  [dir="rtl"] .project-gallery { right: auto; left: .9rem; }
+  [dir="rtl"] .project-visual .visual-label { right: .9rem; left: auto; }
+  [dir="rtl"] .orasoft-process span, [dir="rtl"] .orasoft-process span:not(:first-child) { padding: .85rem 0; border-left: 0; }
+}
