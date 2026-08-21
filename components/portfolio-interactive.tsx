@@ -42,6 +42,7 @@ export function ProjectGallery({ project, featured = false }: { project: Portfol
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const activeImage = project.gallery[activeIndex];
+  const thumbnailIndexes = Array.from(new Set([...Array(Math.min(8, project.gallery.length)).keys(), activeIndex]));
   const goPrevious = () => setActiveIndex((current) => current === 0 ? project.gallery.length - 1 : current - 1);
   const goNext = () => setActiveIndex((current) => current === project.gallery.length - 1 ? 0 : current + 1);
   const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
@@ -77,7 +78,7 @@ export function ProjectGallery({ project, featured = false }: { project: Portfol
         <button type="button" className="project-slider-image-button" onClick={() => setIsOpen(true)} aria-label={`Open project screen ${activeIndex + 1} in full gallery`}><Image src={activeImage} alt={`${project.name} screen ${activeIndex + 1}`} fill sizes="(max-width: 900px) 80vw, 360px" className="project-slider-image" loading="lazy" /></button>
         <button type="button" className="project-slider-nav project-slider-next" onClick={goNext} aria-label="Next project screen"><ChevronRight size={18} /></button>
       </div>
-      <div className="project-slider-thumbs" role="tablist" aria-label="Project screen thumbnails">{project.gallery.map((image, imageIndex) => <button type="button" key={image} role="tab" aria-selected={activeIndex === imageIndex} className={`project-slider-thumb ${activeIndex === imageIndex ? "is-active" : ""}`} onClick={() => setActiveIndex(imageIndex)} aria-label={`Show project screen ${imageIndex + 1}`}><Image src={image} alt="" fill sizes="56px" className="project-slider-thumb-image" loading="lazy" /></button>)}</div>
+      <div className="project-slider-thumbs" role="tablist" aria-label="Project screen thumbnails">{thumbnailIndexes.map((imageIndex) => { const image = project.gallery[imageIndex]; return <button type="button" key={image} role="tab" aria-selected={activeIndex === imageIndex} className={`project-slider-thumb ${activeIndex === imageIndex ? "is-active" : ""}`} onClick={() => setActiveIndex(imageIndex)} aria-label={`Show project screen ${imageIndex + 1}`}><Image src={image} alt="" fill sizes="56px" className="project-slider-thumb-image" loading="lazy" /></button>; })}</div>
     </section>
     {isOpen ? <GalleryModal project={project} activeIndex={activeIndex} onClose={() => setIsOpen(false)} onPrevious={goPrevious} onNext={goNext} onSelect={setActiveIndex} /> : null}
   </>;

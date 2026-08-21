@@ -58,3 +58,22 @@ The unauthenticated PageSpeed Insights API was unavailable because its configure
 After removing Framer Motion from the homepage path, disabling Lenis on touch devices, lazy-loading featured gallery images, adding dedicated SSG project pages, and adding ItemList/CreativeWork structured data, `npm run build` completed successfully. The production-server Lighthouse run measured FCP 1.0 s, LCP 3.2 s, CLS 0, and SEO/accessibility/best-practices at 100. The local lab run still reports inflated Total Blocking Time from an unattributed Lighthouse/Chromium task; it must be validated against the live Vercel deployment and Search Console field data before treating it as a site defect.
 
 Google reference used: https://developers.google.com/search/docs/appearance/core-web-vitals
+
+## Current optimization check — 2026-08-21
+
+After splitting the homepage into a server-rendered shell with small interactive components, disabling Lenis on touch devices, and limiting initial featured-gallery thumbnails to eight per featured project, the local production build measured:
+
+| Category | Score |
+|---|---:|
+| Performance | 82 |
+
+| Metric | Result |
+|---|---:|
+| First Contentful Paint | 3.5 s |
+| Largest Contentful Paint | 3.5 s |
+| Total Blocking Time | 70 ms |
+| Cumulative Layout Shift | 0 |
+| Time to Interactive | 3.9 s |
+| DOM elements | 730 |
+
+The currently deployed Vercel build before this latest compact-gallery change measured Performance 45, SEO 100, Accessibility 100, and Best Practices 100. The live result is more sensitive to network and Chrome throttling than the local production result; the latest compact-gallery change must be measured after Vercel finishes its deployment.

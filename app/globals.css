@@ -489,3 +489,6 @@ button { font: inherit; }
   .project-detail-stack { grid-template-columns: 1fr; gap: 1rem; }
   .project-detail-footer { flex-direction: column; }
 }
+
+/* Keep below-the-fold case studies out of the initial render work while preserving their full content and galleries. */
+.project-card-standard { content-visibility: auto; contain-intrinsic-size: 860px; }
