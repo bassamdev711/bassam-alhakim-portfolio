@@ -490,5 +490,10 @@ button { font: inherit; }
   .project-detail-footer { flex-direction: column; }
 }
 
-/* Keep below-the-fold case studies out of the initial render work while preserving their full content and galleries. */
-.project-card-standard { content-visibility: auto; contain-intrinsic-size: 860px; }
+/* The gallery is the single visual entry point for each case study; avoid repeating its cover above it. */
+.project-card { display: block; min-height: 0; }
+.project-card .project-details { min-height: 0; }
+.project-card-standard { content-visibility: auto; contain-intrinsic-size: 720px; }
+@media (max-width: 900px) {
+  .project-card .project-details { min-height: 0; }
+}
