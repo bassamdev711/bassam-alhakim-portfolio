@@ -19,7 +19,7 @@ import {
   Server,
   X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type TouchEvent } from "react";
 
 function GithubMark({ size = 17 }: { size?: number }) {
   return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>;
@@ -118,7 +118,7 @@ const projects = [
     description: "A Flutter-based store management system built to keep essential work moving without a constant internet connection. The app brings inventory, point of sale, purchasing, customers, suppliers, expenses, reports, and Arabic-first workflows into one focused operating surface, with a LAN display for larger screens.",
     impact: "Offline-first workflows · Local SQLite persistence · Arabic retail operations · Mobile-to-LAN display",
     stack: ["Flutter", "Dart", "Riverpod", "Drift / SQLite", "GoRouter", "PDF + Excel"],
-    image: "/portfolio/maten/maten-19.webp",
+    image: "/portfolio/maten/maten-01.webp",
     gallery: ["/portfolio/maten/maten-01.webp", "/portfolio/maten/maten-02.webp", "/portfolio/maten/maten-03.webp", "/portfolio/maten/maten-04.webp", "/portfolio/maten/maten-05.webp", "/portfolio/maten/maten-06.webp", "/portfolio/maten/maten-07.webp", "/portfolio/maten/maten-08.webp", "/portfolio/maten/maten-09.webp", "/portfolio/maten/maten-10.webp", "/portfolio/maten/maten-11.webp", "/portfolio/maten/maten-12.webp", "/portfolio/maten/maten-13.webp", "/portfolio/maten/maten-14.webp", "/portfolio/maten/maten-15.webp", "/portfolio/maten/maten-16.webp", "/portfolio/maten/maten-17.webp", "/portfolio/maten/maten-18.webp", "/portfolio/maten/maten-19.webp"],
     live: "https://github.com/bassamdev711/baqkah",
     external: "https://github.com/bassamdev711/baqkah",
@@ -205,9 +205,33 @@ export default function PortfolioPage() {
 }
 
 function ProjectCard({ project, index, onOpenGallery }: { project: (typeof projects)[number]; index: number; onOpenGallery: (project: (typeof projects)[number], imageIndex?: number) => void }) {
-  return <motion.article className={`project-card project-${project.accent}`} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.18 }} transition={{ duration: 0.65, delay: index * 0.06 }}><div className="project-visual"><Image src={project.image} alt={`${project.name} project preview`} fill sizes="(max-width: 900px) 100vw, 42vw" className="project-cover" /><div className="project-visual-scrim" /><span className="visual-label">CASE / {project.number}</span><div className="project-gallery" aria-label={`${project.name} additional previews`}>{project.gallery.slice(0, 3).map((image, imageIndex) => <button key={image} type="button" className="project-gallery-button" onClick={() => onOpenGallery(project, imageIndex)} aria-label={`Open ${project.name} screen ${imageIndex + 1}`}><Image src={image} alt="" width={92} height={72} className="project-gallery-image" /></button>)}</div></div><div className="project-details"><div className="project-topline"><span>{project.eyebrow}</span><span>{project.number}</span></div><h3>{project.name}</h3><p className="project-title">{project.title}</p><p className="project-description">{project.description}</p><p className="project-impact"><Check size={15} /> {project.impact}</p><button type="button" className="gallery-launch" onClick={() => onOpenGallery(project)}><Layers3 size={15} /> View all {project.gallery.length} screens</button>{project.name.includes("MATEEN") ? <div className="inline-gallery" aria-label={`${project.name} full image gallery`}>{project.gallery.map((image, imageIndex) => <a key={image} href={image} target="_blank" rel="noreferrer" className="inline-gallery-item"><Image src={image} alt={`${project.name} screen ${imageIndex + 1}`} width={576} height={1280} className="inline-gallery-photo" /></a>)}</div> : null}<div className="project-bottom"><div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links"><a href={project.live} target="_blank" rel="noreferrer" className="text-link">View project <ArrowUpRight size={15} /></a><a href={project.external} target="_blank" rel="noreferrer" aria-label={`View ${project.name} source on GitHub`}><GithubMark size={17} /></a></div></div></div></motion.article>;
+  return <motion.article className={`project-card project-${project.accent}`} initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: index * 0.06 }}><div className="project-visual"><Image src={project.image} alt={`${project.name} project preview`} fill sizes="(max-width: 900px) 100vw, 42vw" className={`project-cover ${project.name.includes("MATEEN") ? "project-cover-contain" : ""}`} /><div className="project-visual-scrim" /><span className="visual-label">CASE / {project.number}</span>{!project.name.includes("MATEEN") ? <div className="project-gallery" aria-label={`${project.name} additional previews`}>{project.gallery.slice(0, 3).map((image, imageIndex) => <button key={image} type="button" className="project-gallery-button" onClick={() => onOpenGallery(project, imageIndex)} aria-label={`Open ${project.name} screen ${imageIndex + 1}`}><Image src={image} alt="" width={92} height={72} className="project-gallery-image" /></button>)}</div> : null}</div><div className="project-details"><div className="project-topline"><span>{project.eyebrow}</span><span>{project.number}</span></div><h3>{project.name}</h3><p className="project-title">{project.title}</p><p className="project-description">{project.description}</p><p className="project-impact"><Check size={15} /> {project.impact}</p>{!project.name.includes("MATEEN") ? <button type="button" className="gallery-launch" onClick={() => onOpenGallery(project)}><Layers3 size={15} /> View all {project.gallery.length} screens</button> : null}{project.name.includes("MATEEN") ? <ProjectGalleryStrip project={project} onOpenGallery={onOpenGallery} /> : null}<div className="project-bottom"><div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links"><a href={project.live} target="_blank" rel="noreferrer" className="text-link">View project <ArrowUpRight size={15} /></a><a href={project.external} target="_blank" rel="noreferrer" aria-label={`View ${project.name} source on GitHub`}><GithubMark size={17} /></a></div></div></div></motion.article>;
 }
 
+
+function ProjectGalleryStrip({ project, onOpenGallery }: { project: (typeof projects)[number]; onOpenGallery: (project: (typeof projects)[number], imageIndex?: number) => void }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const activeImage = project.gallery[activeIndex];
+  const goPrevious = () => setActiveIndex((current) => current === 0 ? project.gallery.length - 1 : current - 1);
+  const goNext = () => setActiveIndex((current) => current === project.gallery.length - 1 ? 0 : current + 1);
+  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    if (touchStart === null) return;
+    const distance = event.changedTouches[0].clientX - touchStart;
+    if (Math.abs(distance) > 45) distance < 0 ? goNext() : goPrevious();
+    setTouchStart(null);
+  };
+
+  return <section className="project-gallery-strip" aria-label={`${project.name} gallery`}>
+    <div className="project-gallery-strip-head"><div><span className="gallery-strip-kicker">Product screens / Gallery</span><span className="gallery-strip-count" aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(project.gallery.length).padStart(2, "0")}</span></div><button type="button" className="gallery-open-link" onClick={() => onOpenGallery(project, activeIndex)}>Open full gallery <ArrowUpRight size={14} /></button></div>
+    <div className="project-slider" onTouchStart={(event) => setTouchStart(event.touches[0].clientX)} onTouchEnd={handleTouchEnd}>
+      <button type="button" className="project-slider-nav project-slider-prev" onClick={goPrevious} aria-label="Previous Maten screen"><ChevronLeft size={18} /></button>
+      <button type="button" className="project-slider-image-button" onClick={() => onOpenGallery(project, activeIndex)} aria-label={`Open Maten screen ${activeIndex + 1} in full gallery`}><Image src={activeImage} alt={`${project.name} screen ${activeIndex + 1}`} fill sizes="(max-width: 900px) 80vw, 360px" className="project-slider-image" priority={activeIndex === 0} /></button>
+      <button type="button" className="project-slider-nav project-slider-next" onClick={goNext} aria-label="Next Maten screen"><ChevronRight size={18} /></button>
+    </div>
+    <div className="project-slider-thumbs" role="tablist" aria-label="Maten screen thumbnails">{project.gallery.map((image, imageIndex) => <button type="button" key={image} role="tab" aria-selected={activeIndex === imageIndex} className={`project-slider-thumb ${activeIndex === imageIndex ? "is-active" : ""}`} onClick={() => setActiveIndex(imageIndex)} aria-label={`Show Maten screen ${imageIndex + 1}`}><Image src={image} alt="" fill sizes="56px" className="project-slider-thumb-image" /></button>)}</div>
+  </section>;
+}
 
 function ProjectGalleryModal({ project, activeIndex, onClose, onPrevious, onNext, onSelect }: { project: (typeof projects)[number]; activeIndex: number; onClose: () => void; onPrevious: () => void; onNext: () => void; onSelect: (index: number) => void }) {
   const activeImage = project.gallery[activeIndex];
