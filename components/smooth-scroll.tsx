@@ -1,24 +1,29 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
-import Lenis from 'lenis';
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+import Lenis from "lenis";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
-    // Prevent browser from restoring scroll position automatically
-    if (typeof window !== 'undefined') {
-      history.scrollRestoration = 'manual';
-    }
+    if (typeof window === "undefined") return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+
+    history.scrollRestoration = "manual";
+
+    // Native scrolling is faster and more predictable on touch devices.
+    if (prefersReducedMotion || isTouchDevice) return;
 
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
+      orientation: "vertical",
+      gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 2,
@@ -27,48 +32,38 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     lenisRef.current = lenis;
 
+    let frameId = 0;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      frameId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    frameId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(frameId);
       lenis.destroy();
       lenisRef.current = null;
     };
   }, []);
 
-  // On every route change → scroll to hash element OR jump to top
   useEffect(() => {
-    // Wait a tick for the page to render before checking hash
-    const timer = setTimeout(() => {
-      const hash = window.location.hash; // e.g. "#projects"
+    const timer = window.setTimeout(() => {
+      const hash = window.location.hash;
+      const target = hash ? document.querySelector(hash) as HTMLElement | null : null;
 
-      if (hash) {
-        // Navigate to the section the user came from (e.g. /#projects)
-        const target = document.querySelector(hash) as HTMLElement | null;
-        if (target) {
-          if (lenisRef.current) {
-            lenisRef.current.scrollTo(target, { immediate: true });
-          } else {
-            target.scrollIntoView();
-          }
-          return; // don't scroll to top
-        }
+      if (target && lenisRef.current) {
+        lenisRef.current.scrollTo(target, { immediate: true });
+      } else if (target) {
+        target.scrollIntoView({ behavior: "auto", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
       }
+    }, 80);
 
-      // No hash → scroll to very top of new page
-      if (lenisRef.current) {
-        lenisRef.current.scrollTo(0, { immediate: true });
-      }
-      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    }, 80); // small delay to ensure DOM is ready
-
-    return () => clearTimeout(timer);
+    return () => window.clearTimeout(timer);
   }, [pathname]);
 
   return <>{children}</>;
