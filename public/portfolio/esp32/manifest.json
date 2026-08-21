@@ -1,0 +1,58 @@
+[
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/architecture.png",
+    "output": "public/portfolio/esp32/esp32-01.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/billing.png",
+    "output": "public/portfolio/esp32/esp32-02.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/components.png",
+    "output": "public/portfolio/esp32/esp32-03.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/dashboard.png",
+    "output": "public/portfolio/esp32/esp32-04.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/device_live_operation.jpg",
+    "output": "public/portfolio/esp32/esp32-05.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/device_photo.png",
+    "output": "public/portfolio/esp32/esp32-06.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/device_technical_exhibition.jpg",
+    "output": "public/portfolio/esp32/esp32-07.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/excel_import.png",
+    "output": "public/portfolio/esp32/esp32-08.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/overview.png",
+    "output": "public/portfolio/esp32/esp32-09.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/readings.png",
+    "output": "public/portfolio/esp32/esp32-10.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/remote_control.png",
+    "output": "public/portfolio/esp32/esp32-11.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/reports.png",
+    "output": "public/portfolio/esp32/esp32-12.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/subscribers.png",
+    "output": "public/portfolio/esp32/esp32-13.webp"
+  },
+  {
+    "source": "/home/ubuntu/esp32-smart-meter/docs/images/wiring.png",
+    "output": "public/portfolio/esp32/esp32-14.webp"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "source": "/home/ubuntu/bassam-alhakim-portfolio/public/images/projects/wifi-monitor/photo_10_2026-05-25_11-41-18.jpg",
+    "output": "public/portfolio/wifi-monitor/wifi-monitor-01.webp"
+  },
+  {
+    "source": "/home/ubuntu/bassam-alhakim-portfolio/public/images/projects/wifi-monitor/photo_1_2026-05-25_11-41-18.jpg",
+    "output": "public/portfolio/wifi-monitor/wifi-monitor-02.webp"
+  },
+  {
+    "source": "/home/ubuntu/bassam-alhakim-portfolio/public/images/projects/wifi-monitor/photo_2_2026-05-25_11-41-18.jpg",
+    "output": "public/portfolio/wifi-monitor/wifi-monitor-03.webp"
+  },
+  {
+    "source": "/home/ubuntu/bassam-alhakim-portfolio/public/images/projects/wifi-monitor/photo_3_2026-05-25_11-41-18.jpg",
+    "output": "public/portfolio/wifi-monitor/wifi-monitor-04.webp"
+  },
+  {
+    "source": "/home/ubuntu/bassam-alhakim-portfolio/public/images/projects/wifi-monitor/photo_4_2026-05-25_11-41-18.jpg",
+    "output": "public/portfolio/wifi-monitor/wifi-monitor-05.webp"
+  },
+  {
+    "source": "/home/ubuntu/bassam-alhakim-portfolio/public/images/projects/wifi-monitor/photo_5_2026-05-25_11-41-18.jpg",
+    "output": "public/portfolio/wifi-monitor/wifi-monitor-06.webp"
+  },
+  {
+    "source": "/home/ubuntu/bassam-alhakim-portfolio/public/images/projects/wifi-monitor/photo_6_2026-05-25_11-41-18.jpg",
+    "output": "public/portfolio/wifi-monitor/wifi-monitor-07.webp"
+  },
+  {
+    "source": "/home/ubuntu/bassam-alhakim-portfolio/public/images/projects/wifi-monitor/photo_7_2026-05-25_11-41-18.jpg",
+    "output": "public/portfolio/wifi-monitor/wifi-monitor-08.webp"
+  },
+  {
+    "source": "/home/ubuntu/bassam-alhakim-portfolio/public/images/projects/wifi-monitor/photo_8_2026-05-25_11-41-18.jpg",
+    "output": "public/portfolio/wifi-monitor/wifi-monitor-09.webp"
+  },
+  {
+    "source": "/home/ubuntu/bassam-alhakim-portfolio/public/images/projects/wifi-monitor/photo_9_2026-05-25_11-41-18.jpg",
+    "output": "public/portfolio/wifi-monitor/wifi-monitor-10.webp"
+  }
+]

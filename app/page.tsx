@@ -25,9 +25,53 @@ function GithubMark({ size = 17 }: { size?: number }) {
   return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>;
 }
 
+const projectImages = (prefix: string, count: number) => Array.from({ length: count }, (_, index) => `/portfolio/${prefix}/${prefix}-${String(index + 1).padStart(2, "0")}.webp`);
+
 const projects = [
   {
     number: "01",
+    eyebrow: "Restaurant operations / ERP",
+    title: "The operating system behind a serious restaurant business",
+    name: "Restaurant ERP / إدارة المطعم",
+    description: "A Laravel-powered restaurant management platform that connects point of sale, inventory, procurement, kitchen workflows, staff operations, reporting, and multi-surface control in one dependable system.",
+    impact: "Point of sale · Inventory and procurement · Kitchen workflows · Reports and printing",
+    stack: ["Laravel", "PHP", "Filament", "MySQL", "Tailwind CSS", "Laravel Reverb"],
+    image: "/portfolio/restaurant/restaurant-01.webp",
+    gallery: projectImages("restaurant", 26),
+    live: "https://github.com/bassamdev711/restaurant-system",
+    external: "https://github.com/bassamdev711/restaurant-system",
+    accent: "blue",
+  },
+  {
+    number: "02",
+    eyebrow: "IoT / energy monitoring",
+    title: "A live electrical telemetry system",
+    name: "ESP32 Smart Meter",
+    description: "An IoT system in which an ESP32 reads voltage and current, calculates power and energy, sends measurements to a PHP/MySQL backend, and exposes a web dashboard for live monitoring, alerts, reports, and remote relay control.",
+    impact: "Real-time measurements · REST telemetry · Remote relay control · Dashboard and reports",
+    stack: ["ESP32", "Arduino C++", "PHP", "MySQL", "JavaScript", "Chart.js"],
+    image: "/portfolio/esp32/esp32-02.webp",
+    gallery: projectImages("esp32", 14),
+    live: "https://github.com/bassamdev711/esp32-smart-meter",
+    external: "https://github.com/bassamdev711/esp32-smart-meter",
+    accent: "cyan",
+  },
+  {
+    number: "03",
+    eyebrow: "Systems / mobile utility",
+    title: "A focused telemetry layer for Android",
+    name: "WiFi Monitor Pro",
+    description: "A Flutter and Kotlin-powered Android utility for monitoring per-app network consumption with a persistent foreground engine, local history, and security-focused overlays.",
+    impact: "Per-app telemetry · Foreground service · Local history · Security overlay",
+    stack: ["Flutter", "Kotlin Native", "Android SDK", "SQLite"],
+    image: "/portfolio/wifi-monitor/wifi-monitor-06.webp",
+    gallery: projectImages("wifi-monitor", 10),
+    live: "https://github.com/bassamdev711/wifi-monitor-pro",
+    external: "https://github.com/bassamdev711/wifi-monitor-pro",
+    accent: "violet",
+  },
+  {
+    number: "04",
     eyebrow: "Luxury commerce / 3D",
     title: "A cinematic fragrance boutique",
     name: "TIF / طيف",
@@ -41,7 +85,7 @@ const projects = [
     accent: "amber",
   },
   {
-    number: "02",
+    number: "05",
     eyebrow: "Cultural commerce / retail",
     title: "A digital home for authentic flavor",
     name: "House of Spices / بيت البهارات",
@@ -55,7 +99,7 @@ const projects = [
     accent: "orange",
   },
   {
-    number: "03",
+    number: "06",
     eyebrow: "Fashion commerce / editorial",
     title: "A quieter way to find the right step",
     name: "ATHR / أثر",
@@ -69,7 +113,7 @@ const projects = [
     accent: "cyan",
   },
   {
-    number: "04",
+    number: "07",
     eyebrow: "Luxury retail / timepieces",
     title: "Time, in a rarer form",
     name: "ORVÉN",
@@ -83,7 +127,7 @@ const projects = [
     accent: "violet",
   },
   {
-    number: "05",
+    number: "08",
     eyebrow: "Home technology / energy",
     title: "A smarter operating layer for the home",
     name: "TAQA HOME / طاقة هوم",
@@ -97,7 +141,7 @@ const projects = [
     accent: "blue",
   },
   {
-    number: "06",
+    number: "09",
     eyebrow: "Healthcare / patient experience",
     title: "Precision, with a human rhythm",
     name: "Dr. Layan Clinic",
@@ -111,7 +155,7 @@ const projects = [
     accent: "rose",
   },
   {
-    number: "07",
+    number: "10",
     eyebrow: "Offline-first retail / Flutter",
     title: "A dependable operating layer for the neighborhood store",
     name: "MATEEN / متين",
@@ -195,7 +239,7 @@ export default function PortfolioPage() {
 
       <section id="approach" className="approach-section section-frame"><div className="section-kicker"><span>02</span><span>How I work</span></div><div className="section-heading-row"><div><p className="eyebrow">A practical point of view</p><h2>Clarity first.<br /><span>Craft always.</span></h2></div><p className="section-intro">The strongest products are not just functional. They make the next decision obvious, the system dependable, and the experience worth returning to.</p></div><div className="capability-grid">{capabilities.map((capability, index) => { const Icon = capability.icon; return <motion.article key={capability.title} className="capability-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.55, delay: index * 0.08 }}><span className="card-number">0{index + 1}</span><Icon size={23} strokeWidth={1.5} /><h3>{capability.title}</h3><p>{capability.description}</p><span className="card-arrow"><ChevronRight size={16} /></span></motion.article>; })}</div><div className="tech-strip"><span className="tech-label">Working toolkit</span><div className="tech-list">{technologies.map((technology) => <span key={technology}>{technology}</span>)}</div></div></section>
 
-      <section id="work" className="work-section section-frame"><div className="section-kicker"><span>03</span><span>Selected work</span></div><div className="section-heading-row work-heading"><div><p className="eyebrow">Seven shipped digital experiences</p><h2>Selected<br /><span>systems.</span></h2></div><p className="section-intro">A focused portfolio of commerce, healthcare, and home-technology products — each one designed, engineered, and connected to a live experience.</p></div><div className="project-list">{projects.map((project, index) => <ProjectCard key={project.name} project={project} index={index} onOpenGallery={openGallery} />)}</div><div className="all-work-row"><span>15 public repositories on GitHub</span><a href="https://github.com/bassamdev711?tab=repositories" target="_blank" rel="noreferrer" className="text-link">View all repositories <ExternalLink size={15} /></a></div></section>
+      <section id="work" className="work-section section-frame"><div className="section-kicker"><span>03</span><span>Selected work</span></div><div className="section-heading-row work-heading"><div><p className="eyebrow">Ten shipped digital experiences</p><h2>Selected<br /><span>systems.</span></h2></div><p className="section-intro">A focused portfolio of ten commerce, healthcare, IoT, and store-technology products — each one designed, engineered, and connected to a live experience.</p></div><div className="project-list">{projects.map((project, index) => <ProjectCard key={project.name} project={project} index={index} onOpenGallery={openGallery} />)}</div><div className="all-work-row"><span>15 public repositories on GitHub</span><a href="https://github.com/bassamdev711?tab=repositories" target="_blank" rel="noreferrer" className="text-link">View all repositories <ExternalLink size={15} /></a></div></section>
 
       <section id="contact" className="contact-section section-frame"><div className="contact-panel"><div className="contact-topline"><span>04 / Contact</span><span>Open to the right challenge</span></div><div className="contact-content"><p className="eyebrow"><span className="eyebrow-line" /> Start a conversation</p><h2>Have a complex idea?<br /><span>Let&apos;s give it shape.</span></h2><p>Whether you need a product from zero, a stronger technical foundation, or a second pair of eyes on a difficult system, I&apos;d be glad to hear what you&apos;re building.</p><a href="mailto:bassam.alhakim.dev@gmail.com" className="button button-light">bassam.alhakim.dev@gmail.com <ArrowUpRight size={17} /></a></div><div className="contact-links"><a href="https://github.com/bassamdev711" target="_blank" rel="noreferrer"><GithubMark size={17} /> GitHub</a><a href="https://www.linkedin.com/in/bassam-al-hakim-b4007a40b" target="_blank" rel="noreferrer"><BriefcaseBusiness size={17} /> LinkedIn</a><a href="tel:+967780500363"><Phone size={17} /> +967 780 500 363</a></div></div></section>
       <footer className="site-footer section-frame"><div className="footer-brand"><span className="brand-symbol">BA</span><span>© 2026 Bassam Alhakim</span></div><span>Designed, engineered, and shipped with intent.</span><a href="#top" className="footer-top">Back to top <ArrowUpRight size={15} /></a></footer>
@@ -205,7 +249,8 @@ export default function PortfolioPage() {
 }
 
 function ProjectCard({ project, index, onOpenGallery }: { project: (typeof projects)[number]; index: number; onOpenGallery: (project: (typeof projects)[number], imageIndex?: number) => void }) {
-  return <motion.article className={`project-card project-${project.accent}`} initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: index * 0.06 }}><div className="project-visual"><Image src={project.image} alt={`${project.name} project preview`} fill sizes="(max-width: 900px) 100vw, 42vw" className={`project-cover ${project.name.includes("MATEEN") ? "project-cover-contain" : ""}`} /><div className="project-visual-scrim" /><span className="visual-label">CASE / {project.number}</span>{!project.name.includes("MATEEN") ? <div className="project-gallery" aria-label={`${project.name} additional previews`}>{project.gallery.slice(0, 3).map((image, imageIndex) => <button key={image} type="button" className="project-gallery-button" onClick={() => onOpenGallery(project, imageIndex)} aria-label={`Open ${project.name} screen ${imageIndex + 1}`}><Image src={image} alt="" width={92} height={72} className="project-gallery-image" /></button>)}</div> : null}</div><div className="project-details"><div className="project-topline"><span>{project.eyebrow}</span><span>{project.number}</span></div><h3>{project.name}</h3><p className="project-title">{project.title}</p><p className="project-description">{project.description}</p><p className="project-impact"><Check size={15} /> {project.impact}</p>{!project.name.includes("MATEEN") ? <button type="button" className="gallery-launch" onClick={() => onOpenGallery(project)}><Layers3 size={15} /> View all {project.gallery.length} screens</button> : null}{project.name.includes("MATEEN") ? <ProjectGalleryStrip project={project} onOpenGallery={onOpenGallery} /> : null}<div className="project-bottom"><div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links"><a href={project.live} target="_blank" rel="noreferrer" className="text-link">View project <ArrowUpRight size={15} /></a><a href={project.external} target="_blank" rel="noreferrer" aria-label={`View ${project.name} source on GitHub`}><GithubMark size={17} /></a></div></div></div></motion.article>;
+  const isPortraitProject = /MATEEN|Smart Meter|WiFi Monitor Pro/.test(project.name);
+  return <motion.article className={`project-card project-${project.accent}`} initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: index * 0.06 }}><div className="project-visual"><Image src={project.image} alt={`${project.name} project preview`} fill sizes="(max-width: 900px) 100vw, 42vw" className={`project-cover ${isPortraitProject ? "project-cover-contain" : ""}`} /><div className="project-visual-scrim" /><span className="visual-label">CASE / {project.number}</span></div><div className="project-details"><div className="project-topline"><span>{project.eyebrow}</span><span>{project.number}</span></div><h3>{project.name}</h3><p className="project-title">{project.title}</p><p className="project-description">{project.description}</p><p className="project-impact"><Check size={15} /> {project.impact}</p><ProjectGalleryStrip project={project} onOpenGallery={onOpenGallery} /><div className="project-bottom"><div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links"><a href={project.live} target="_blank" rel="noreferrer" className="text-link">View project <ArrowUpRight size={15} /></a><a href={project.external} target="_blank" rel="noreferrer" aria-label={`View ${project.name} source on GitHub`}><GithubMark size={17} /></a></div></div></div></motion.article>;
 }
 
 
@@ -223,17 +268,17 @@ function ProjectGalleryStrip({ project, onOpenGallery }: { project: (typeof proj
   };
 
   return <section className="project-gallery-strip" aria-label={`${project.name} gallery`}>
-    <div className="project-gallery-strip-head"><div><span className="gallery-strip-kicker">Product screens / Gallery</span><span className="gallery-strip-count" aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(project.gallery.length).padStart(2, "0")}</span></div><button type="button" className="gallery-open-link" onClick={() => onOpenGallery(project, activeIndex)}>Open full gallery <ArrowUpRight size={14} /></button></div>
+    <div className="project-gallery-strip-head"><div><span className="gallery-strip-kicker">Project gallery</span><span className="gallery-strip-count" aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(project.gallery.length).padStart(2, "0")}</span></div><button type="button" className="gallery-open-link" onClick={() => onOpenGallery(project, activeIndex)}>Open full gallery <ArrowUpRight size={14} /></button></div>
     <div className="project-slider" onTouchStart={(event) => setTouchStart(event.touches[0].clientX)} onTouchEnd={handleTouchEnd}>
-      <button type="button" className="project-slider-nav project-slider-prev" onClick={goPrevious} aria-label="Previous Maten screen"><ChevronLeft size={18} /></button>
-      <button type="button" className="project-slider-image-button" onClick={() => onOpenGallery(project, activeIndex)} aria-label={`Open Maten screen ${activeIndex + 1} in full gallery`}><Image src={activeImage} alt={`${project.name} screen ${activeIndex + 1}`} fill sizes="(max-width: 900px) 80vw, 360px" className="project-slider-image" priority={activeIndex === 0} /></button>
-      <button type="button" className="project-slider-nav project-slider-next" onClick={goNext} aria-label="Next Maten screen"><ChevronRight size={18} /></button>
+      <button type="button" className="project-slider-nav project-slider-prev" onClick={goPrevious} aria-label="Previous project screen"><ChevronLeft size={18} /></button>
+      <button type="button" className="project-slider-image-button" onClick={() => onOpenGallery(project, activeIndex)} aria-label={`Open project screen ${activeIndex + 1} in full gallery`}><Image src={activeImage} alt={`${project.name} screen ${activeIndex + 1}`} fill sizes="(max-width: 900px) 80vw, 360px" className="project-slider-image" priority={activeIndex === 0} /></button>
+      <button type="button" className="project-slider-nav project-slider-next" onClick={goNext} aria-label="Next project screen"><ChevronRight size={18} /></button>
     </div>
-    <div className="project-slider-thumbs" role="tablist" aria-label="Maten screen thumbnails">{project.gallery.map((image, imageIndex) => <button type="button" key={image} role="tab" aria-selected={activeIndex === imageIndex} className={`project-slider-thumb ${activeIndex === imageIndex ? "is-active" : ""}`} onClick={() => setActiveIndex(imageIndex)} aria-label={`Show Maten screen ${imageIndex + 1}`}><Image src={image} alt="" fill sizes="56px" className="project-slider-thumb-image" /></button>)}</div>
+    <div className="project-slider-thumbs" role="tablist" aria-label="Project screen thumbnails">{project.gallery.map((image, imageIndex) => <button type="button" key={image} role="tab" aria-selected={activeIndex === imageIndex} className={`project-slider-thumb ${activeIndex === imageIndex ? "is-active" : ""}`} onClick={() => setActiveIndex(imageIndex)} aria-label={`Show project screen ${imageIndex + 1}`}><Image src={image} alt="" fill sizes="56px" className="project-slider-thumb-image" /></button>)}</div>
   </section>;
 }
 
 function ProjectGalleryModal({ project, activeIndex, onClose, onPrevious, onNext, onSelect }: { project: (typeof projects)[number]; activeIndex: number; onClose: () => void; onPrevious: () => void; onNext: () => void; onSelect: (index: number) => void }) {
   const activeImage = project.gallery[activeIndex];
-  return <div className="gallery-modal" role="dialog" aria-modal="true" aria-label={`${project.name} image gallery`} onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}><div className="gallery-modal-panel"><div className="gallery-modal-header"><div><span className="gallery-modal-kicker">{project.name} / Full gallery</span><h2>{project.gallery.length} product screens</h2></div><button type="button" className="gallery-close" onClick={onClose} aria-label="Close image gallery"><X size={20} /></button></div><div className="gallery-modal-stage"><button type="button" className="gallery-nav gallery-nav-previous" onClick={onPrevious} aria-label="Previous screen"><ChevronLeft size={22} /></button><div className="gallery-modal-image"><Image src={activeImage} alt={`${project.name} screen ${activeIndex + 1}`} fill sizes="(max-width: 700px) 88vw, 560px" className="gallery-modal-photo" priority /></div><button type="button" className="gallery-nav gallery-nav-next" onClick={onNext} aria-label="Next screen"><ChevronRight size={22} /></button></div><div className="gallery-modal-meta"><span>{String(activeIndex + 1).padStart(2, "0")} / {String(project.gallery.length).padStart(2, "0")}</span><span>Use ← → to browse · Esc to close</span></div><div className="gallery-modal-thumbs" aria-label="Gallery thumbnails">{project.gallery.map((image, imageIndex) => <button type="button" key={image} className={`gallery-thumb ${activeIndex === imageIndex ? "is-active" : ""}`} onClick={() => onSelect(imageIndex)} aria-label={`Show ${project.name} screen ${imageIndex + 1}`} aria-current={activeIndex === imageIndex ? "true" : undefined}><Image src={image} alt="" fill sizes="64px" className="gallery-thumb-image" /></button>)}</div></div></div>;
+  return <div className="gallery-modal" role="dialog" aria-modal="true" aria-label={`${project.name} image gallery`} onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}><div className="gallery-modal-panel"><div className="gallery-modal-header"><div><span className="gallery-modal-kicker">{project.name} / Full gallery</span><h2>{project.gallery.length} project screens</h2></div><button type="button" className="gallery-close" onClick={onClose} aria-label="Close image gallery"><X size={20} /></button></div><div className="gallery-modal-stage"><button type="button" className="gallery-nav gallery-nav-previous" onClick={onPrevious} aria-label="Previous screen"><ChevronLeft size={22} /></button><div className="gallery-modal-image"><Image src={activeImage} alt={`${project.name} screen ${activeIndex + 1}`} fill sizes="(max-width: 700px) 88vw, 560px" className="gallery-modal-photo" priority /></div><button type="button" className="gallery-nav gallery-nav-next" onClick={onNext} aria-label="Next screen"><ChevronRight size={22} /></button></div><div className="gallery-modal-meta"><span>{String(activeIndex + 1).padStart(2, "0")} / {String(project.gallery.length).padStart(2, "0")}</span><span>Use ← → to browse · Esc to close</span></div><div className="gallery-modal-thumbs" aria-label="Gallery thumbnails">{project.gallery.map((image, imageIndex) => <button type="button" key={image} className={`gallery-thumb ${activeIndex === imageIndex ? "is-active" : ""}`} onClick={() => onSelect(imageIndex)} aria-label={`Show ${project.name} screen ${imageIndex + 1}`} aria-current={activeIndex === imageIndex ? "true" : undefined}><Image src={image} alt="" fill sizes="64px" className="gallery-thumb-image" /></button>)}</div></div></div>;
 }
