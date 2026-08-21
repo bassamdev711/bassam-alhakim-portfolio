@@ -8,7 +8,6 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
-  Circle,
   Code2,
   Download,
   ExternalLink,
@@ -228,10 +227,10 @@ export default function PortfolioPage() {
           <motion.p className="eyebrow" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}><span className="eyebrow-line" /> Software engineer · Product builder</motion.p>
           <motion.h1>I engineer the systems<span>people trust.</span></motion.h1>
           <motion.p className="hero-lead">I&apos;m Bassam Alhakim — a systems-minded full-stack engineer working across Laravel, Next.js, Flutter, IoT, data, and product experience. I turn complex operations into software that feels clear, capable, and built to last.</motion.p>
-          <motion.div className="hero-actions"><a href="#work" className="button button-primary">Explore selected work <ArrowDown size={16} /></a><a href="/Bassam_Alhakim_Systems_Engineer_CV.pdf" download className="button button-light"><Download size={16} /> Download résumé</a></motion.div><div className="hero-proof"><div><strong>10</strong><span>shipped systems</span></div><div><strong>15+</strong><span>public repositories</span></div><div><strong>7</strong><span>technology lanes</span></div></div>
+          <motion.div className="hero-actions"><a href="#work" className="button button-primary">Explore selected work <ArrowDown size={16} /></a><a href="/Bassam_Alhakim_Systems_Engineer_CV.pdf" download className="button button-light"><Download size={16} /> Download résumé</a></motion.div><div className="hero-proof"><div><strong>10</strong><span>selected systems</span></div><div><strong>15+</strong><span>repositories</span></div><div><strong>7</strong><span>technology areas</span></div></div>
         </div>
         <motion.div className="hero-portrait-wrap">
-          <div className="portrait-orbit orbit-one" /><div className="portrait-orbit orbit-two" /><div className="portrait-card"><div className="portrait-meta"><span>BA / 711</span><span>01 — 06</span></div><div className="portrait-image"><Image src="/developer.jpg" alt="Bassam Alhakim, software engineer" fill priority sizes="(max-width: 900px) 82vw, 420px" className="object-cover object-top" /></div><div className="portrait-footer"><span>Systems / Products / Interfaces</span><span className="portrait-signal"><Circle size={8} fill="currentColor" /> Online</span></div></div><div className="hero-note"><span>Based in Yemen</span><span>Working globally</span></div>
+          <div className="portrait-card"><div className="portrait-meta"><span>BASSAM ALHAKIM</span><span>SYSTEMS ENGINEER</span></div><div className="portrait-image"><Image src="/developer.jpg" alt="Bassam Alhakim, software engineer" fill priority sizes="(max-width: 900px) 82vw, 420px" className="object-cover object-top" /></div><div className="portrait-footer"><span>Yemen · Remote</span><span>Software systems</span></div></div>
         </motion.div>
         <div className="hero-index"><span>Scroll to explore</span><ArrowDown size={16} /></div>
       </section>
