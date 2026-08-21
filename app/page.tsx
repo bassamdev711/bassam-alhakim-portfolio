@@ -63,6 +63,6 @@ function OrasoftSection() {
       </div>
     </div>
     <div className="orasoft-process"><span>Explore the context</span><span>Map the path</span><span>Build with clarity</span><span>Improve what matters</span></div>
-    <div className="orasoft-gallery" aria-label="Orasoft visual gallery">{images.map((image, index) => <div key={image.src} className={`orasoft-image orasoft-image-${index + 1}`}><Image src={image.src} alt={image.alt} fill loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw" /></div>)}</div>
+    <div className="orasoft-gallery" aria-label="Orasoft visual gallery">{images.map((image, index) => <a key={image.src} href={image.src} target="_blank" rel="noreferrer" className={`orasoft-image orasoft-image-${index + 1}`} aria-label={`Open full-size image: ${image.alt}`}><Image src={image.src} alt={image.alt} fill loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw" /></a>)}</div>
   </section>;
 }
