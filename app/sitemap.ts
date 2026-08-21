@@ -10,6 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/projects/restaurant-erp",
     "/projects/tif",
     "/projects/wifi-monitor-pro",
+    "/projects/esp32-smart-meter",
+    "/projects/athr",
+    "/projects/orven",
+    "/projects/taqa-home",
+    "/projects/dr-layan-clinic",
+    "/projects/maten",
   ];
 
   return routes.map((route) => ({

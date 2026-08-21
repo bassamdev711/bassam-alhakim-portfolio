@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useSpring } from "framer-motion";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -19,7 +18,7 @@ import {
   Server,
   X,
 } from "lucide-react";
-import { useEffect, useState, type TouchEvent } from "react";
+import { useEffect, useRef, useState, type TouchEvent } from "react";
 
 function GithubMark({ size = 17 }: { size?: number }) {
   return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.28 1.15-.28 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>;
@@ -178,12 +177,32 @@ const capabilities = [
 
 const technologies = ["Next.js", "TypeScript", "React Three Fiber", "Prisma", "PostgreSQL", "Laravel", "Flutter", "Vercel"];
 
+function ScrollProgress() {
+  const progressRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateProgress = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      progressRef.current?.style.setProperty("--scroll-progress", String(progress));
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    return () => {
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+    };
+  }, []);
+
+  return <div ref={progressRef} className="scroll-progress" aria-hidden="true" />;
+}
+
 export default function PortfolioPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeGallery, setActiveGallery] = useState<(typeof projects)[number] | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   const closeMenu = () => setMenuOpen(false);
   const openGallery = (project: (typeof projects)[number], imageIndex = 0) => {
     setActiveGallery(project);
@@ -209,7 +228,7 @@ export default function PortfolioPage() {
 
   return (
     <main className="site-shell">
-      <motion.div className="scroll-progress" style={{ scaleX: progress }} />
+      <ScrollProgress />
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
       <div className="noise-layer" />
@@ -224,20 +243,20 @@ export default function PortfolioPage() {
       <section id="top" className="hero-section section-frame">
         <div className="hero-grid-line" />
         <div className="hero-content">
-          <motion.p className="eyebrow" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}><span className="eyebrow-line" /> Software engineer · Product builder</motion.p>
-          <motion.h1>I engineer the systems<span>people trust.</span></motion.h1>
-          <motion.p className="hero-lead">I&apos;m Bassam Alhakim — a systems-minded full-stack engineer working across Laravel, Next.js, Flutter, IoT, data, and product experience. I turn complex operations into software that feels clear, capable, and built to last.</motion.p>
-          <motion.div className="hero-actions"><a href="#work" className="button button-primary">Explore selected work <ArrowDown size={16} /></a><a href="/Bassam_Alhakim_Systems_Engineer_CV.pdf" download className="button button-light"><Download size={16} /> Download résumé</a></motion.div><div className="hero-proof"><div><strong>10</strong><span>selected systems</span></div><div><strong>15+</strong><span>repositories</span></div><div><strong>7</strong><span>technology areas</span></div></div>
+          <p className="eyebrow"><span className="eyebrow-line" /> Software engineer · Product builder</p>
+          <h1>I engineer the systems<span>people trust.</span></h1>
+          <p className="hero-lead">I&apos;m Bassam Alhakim — a systems-minded full-stack engineer working across Laravel, Next.js, Flutter, IoT, data, and product experience. I turn complex operations into software that feels clear, capable, and built to last.</p>
+          <div className="hero-actions"><a href="#work" className="button button-primary">Explore selected work <ArrowDown size={16} /></a><a href="/Bassam_Alhakim_Systems_Engineer_CV.pdf" download className="button button-light"><Download size={16} /> Download résumé</a></div><div className="hero-proof"><div><strong>10</strong><span>selected systems</span></div><div><strong>15+</strong><span>repositories</span></div><div><strong>7</strong><span>technology areas</span></div></div>
         </div>
-        <motion.div className="hero-portrait-wrap">
+        <div className="hero-portrait-wrap">
           <div className="portrait-card"><div className="portrait-meta"><span>BASSAM ALHAKIM</span><span>SYSTEMS ENGINEER</span></div><div className="portrait-image"><Image src="/developer.jpg" alt="Bassam Alhakim, software engineer" fill priority sizes="(max-width: 900px) 82vw, 420px" className="object-cover object-top" /></div><div className="portrait-footer"><span>Yemen · Remote</span><span>Software systems</span></div></div>
-        </motion.div>
+        </div>
         <div className="hero-index"><span>Scroll to explore</span><ArrowDown size={16} /></div>
       </section>
 
       <section id="about" className="manifesto-section section-frame"><div className="section-kicker"><span>01</span><span>What I care about</span></div><div className="manifesto-layout"><h2>Good engineering should feel <em>inevitable.</em></h2><div className="manifesto-copy"><p>I work at the intersection of product thinking and software engineering. The goal is never to add complexity for its own sake; it is to make ambitious ideas easier to understand, operate, and grow.</p><p>From enterprise workflows to immersive commerce, I bring structure to the hard parts and taste to the visible ones.</p><a href="#contact" className="text-link">Let&apos;s make something considered <ArrowUpRight size={15} /></a></div></div></section>
 
-      <section id="approach" className="approach-section section-frame"><div className="section-kicker"><span>02</span><span>Engineering range</span></div><div className="section-heading-row"><div><p className="eyebrow">The stack is only the beginning</p><h2>Depth across<br /><span>the whole build.</span></h2></div><p className="section-intro">From the first product decision to the last operational detail, I work across the layers that make software useful: interface, backend, data, deployment, and the systems around them.</p></div><div className="capability-grid">{capabilities.map((capability, index) => { const Icon = capability.icon; return <motion.article key={capability.title} className="capability-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.55, delay: index * 0.08 }}><span className="card-number">0{index + 1}</span><Icon size={23} strokeWidth={1.5} /><h3>{capability.title}</h3><p>{capability.description}</p><span className="card-arrow"><ChevronRight size={16} /></span></motion.article>; })}</div><div className="expertise-panel"><div className="expertise-panel-heading"><span className="tech-label">Core technologies</span><span className="expertise-note">Selected by the problem, not the trend</span></div><div className="expertise-grid"><div><span className="expertise-group-label">Product & web</span><strong>Next.js · React · TypeScript</strong><small>Commerce, dashboards, editorial systems, motion-led interfaces.</small></div><div><span className="expertise-group-label">Backend & data</span><strong>Laravel · PHP · Prisma · PostgreSQL</strong><small>Operational workflows, auth, APIs, relational data, admin surfaces.</small></div><div><span className="expertise-group-label">Mobile & edge</span><strong>Flutter · Dart · ESP32 · C++</strong><small>Offline-first apps, connected devices, telemetry, local persistence.</small></div><div><span className="expertise-group-label">Experience layer</span><strong>Three.js · Framer Motion · Tailwind</strong><small>High-signal art direction with speed, accessibility, and restraint.</small></div></div></div><div className="tech-strip"><span className="tech-label">Working toolkit</span><div className="tech-list">{technologies.map((technology) => <span key={technology}>{technology}</span>)}</div></div></section>
+      <section id="approach" className="approach-section section-frame"><div className="section-kicker"><span>02</span><span>Engineering range</span></div><div className="section-heading-row"><div><p className="eyebrow">The stack is only the beginning</p><h2>Depth across<br /><span>the whole build.</span></h2></div><p className="section-intro">From the first product decision to the last operational detail, I work across the layers that make software useful: interface, backend, data, deployment, and the systems around them.</p></div>          <div className="capability-grid">{capabilities.map((capability, index) => { const Icon = capability.icon; return <article key={capability.title} className="capability-card"><span className="card-number">0{index + 1}</span><Icon size={23} strokeWidth={1.5} /><h3>{capability.title}</h3><p>{capability.description}</p><span className="card-arrow"><ChevronRight size={16} /></span></article>; })}</div><div className="expertise-panel"><div className="expertise-panel-heading"><span className="tech-label">Core technologies</span><span className="expertise-note">Selected by the problem, not the trend</span></div><div className="expertise-grid"><div><span className="expertise-group-label">Product & web</span><strong>Next.js · React · TypeScript</strong><small>Commerce, dashboards, editorial systems, motion-led interfaces.</small></div><div><span className="expertise-group-label">Backend & data</span><strong>Laravel · PHP · Prisma · PostgreSQL</strong><small>Operational workflows, auth, APIs, relational data, admin surfaces.</small></div><div><span className="expertise-group-label">Mobile & edge</span><strong>Flutter · Dart · ESP32 · C++</strong><small>Offline-first apps, connected devices, telemetry, local persistence.</small></div><div><span className="expertise-group-label">Experience layer</span><strong>Three.js · Framer Motion · Tailwind</strong><small>High-signal art direction with speed, accessibility, and restraint.</small></div></div></div><div className="tech-strip"><span className="tech-label">Working toolkit</span><div className="tech-list">{technologies.map((technology) => <span key={technology}>{technology}</span>)}</div></div></section>
 
       <section id="work" className="work-section section-frame"><div className="section-kicker"><span>03</span><span>Proof of work</span></div><div className="section-heading-row work-heading"><div><p className="eyebrow">Ten systems. One standard.</p><h2>Built for<br /><span>the real world.</span></h2></div><p className="section-intro">A selected body of commerce, healthcare, IoT, and store-technology products. Each case shows the thinking, tools, and operational depth behind the interface.</p></div><div className="project-list">{projects.map((project, index) => <ProjectCard key={project.name} project={project} index={index} onOpenGallery={openGallery} />)}</div><div className="all-work-row"><span>15 public repositories on GitHub</span><a href="https://github.com/bassamdev711?tab=repositories" target="_blank" rel="noreferrer" className="text-link">View all repositories <ExternalLink size={15} /></a></div></section>
 
@@ -251,7 +270,7 @@ export default function PortfolioPage() {
 function ProjectCard({ project, index, onOpenGallery }: { project: (typeof projects)[number]; index: number; onOpenGallery: (project: (typeof projects)[number], imageIndex?: number) => void }) {
   const isPortraitProject = /MATEEN|Smart Meter|WiFi Monitor Pro/.test(project.name);
   const isFeatured = index < 2;
-  return <motion.article className={`project-card ${isFeatured ? "project-card-featured" : "project-card-standard"} project-${project.accent}`} initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: index * 0.06 }}><div className="project-visual"><Image src={project.image} alt={`${project.name} project preview`} fill sizes="(max-width: 900px) 100vw, 42vw" className={`project-cover ${isPortraitProject ? "project-cover-contain" : ""}`} /><div className="project-visual-scrim" /><span className="visual-label">CASE / {project.number}</span></div><div className="project-details"><div className="project-topline"><span>{project.eyebrow}</span><span>{project.number}</span></div><h3>{project.name}</h3><p className="project-title">{project.title}</p><p className="project-description">{project.description}</p><p className="project-impact"><Check size={15} /> {project.impact}</p>{isFeatured ? <ProjectGalleryStrip project={project} onOpenGallery={onOpenGallery} /> : <ProjectGalleryPreview project={project} isPortraitProject={isPortraitProject} onOpenGallery={onOpenGallery} />}<div className="project-bottom"><div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links"><a href={project.live} target="_blank" rel="noreferrer" className="text-link">View project <ArrowUpRight size={15} /></a><a href={project.external} target="_blank" rel="noreferrer" aria-label={`View ${project.name} source on GitHub`}><GithubMark size={17} /></a></div></div></div></motion.article>;
+  return <article className={`project-card ${isFeatured ? "project-card-featured" : "project-card-standard"} project-${project.accent}`}><div className="project-visual"><Image src={project.image} alt={`${project.name} project preview`} fill sizes="(max-width: 900px) 100vw, 42vw" className={`project-cover ${isPortraitProject ? "project-cover-contain" : ""}`} /><div className="project-visual-scrim" /><span className="visual-label">CASE / {project.number}</span></div><div className="project-details"><div className="project-topline"><span>{project.eyebrow}</span><span>{project.number}</span></div><h3>{project.name}</h3><p className="project-title">{project.title}</p><p className="project-description">{project.description}</p><p className="project-impact"><Check size={15} /> {project.impact}</p>{isFeatured ? <ProjectGalleryStrip project={project} onOpenGallery={onOpenGallery} /> : <ProjectGalleryPreview project={project} isPortraitProject={isPortraitProject} onOpenGallery={onOpenGallery} />}<div className="project-bottom"><div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links"><a href={project.live} target="_blank" rel="noreferrer" className="text-link">View project <ArrowUpRight size={15} /></a><a href={project.external} target="_blank" rel="noreferrer" aria-label={`View ${project.name} source on GitHub`}><GithubMark size={17} /></a></div></div></div></article>;
 }
 
 function ProjectGalleryPreview({ project, isPortraitProject, onOpenGallery }: { project: (typeof projects)[number]; isPortraitProject: boolean; onOpenGallery: (project: (typeof projects)[number], imageIndex?: number) => void }) {
@@ -276,7 +295,7 @@ function ProjectGalleryStrip({ project, onOpenGallery }: { project: (typeof proj
     <div className="project-gallery-strip-head"><div><span className="gallery-strip-kicker">Project gallery</span><span className="gallery-strip-count" aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(project.gallery.length).padStart(2, "0")}</span></div><button type="button" className="gallery-open-link" onClick={() => onOpenGallery(project, activeIndex)}>Open full gallery <ArrowUpRight size={14} /></button></div>
     <div className="project-slider" onTouchStart={(event) => setTouchStart(event.touches[0].clientX)} onTouchEnd={handleTouchEnd}>
       <button type="button" className="project-slider-nav project-slider-prev" onClick={goPrevious} aria-label="Previous project screen"><ChevronLeft size={18} /></button>
-      <button type="button" className="project-slider-image-button" onClick={() => onOpenGallery(project, activeIndex)} aria-label={`Open project screen ${activeIndex + 1} in full gallery`}><Image src={activeImage} alt={`${project.name} screen ${activeIndex + 1}`} fill sizes="(max-width: 900px) 80vw, 360px" className="project-slider-image" priority={activeIndex === 0} /></button>
+      <button type="button" className="project-slider-image-button" onClick={() => onOpenGallery(project, activeIndex)} aria-label={`Open project screen ${activeIndex + 1} in full gallery`}><Image src={activeImage} alt={`${project.name} screen ${activeIndex + 1}`} fill sizes="(max-width: 900px) 80vw, 360px" className="project-slider-image" loading="lazy" /></button>
       <button type="button" className="project-slider-nav project-slider-next" onClick={goNext} aria-label="Next project screen"><ChevronRight size={18} /></button>
     </div>
     <div className="project-slider-thumbs" role="tablist" aria-label="Project screen thumbnails">{project.gallery.map((image, imageIndex) => <button type="button" key={image} role="tab" aria-selected={activeIndex === imageIndex} className={`project-slider-thumb ${activeIndex === imageIndex ? "is-active" : ""}`} onClick={() => setActiveIndex(imageIndex)} aria-label={`Show project screen ${imageIndex + 1}`}><Image src={image} alt="" fill sizes="56px" className="project-slider-thumb-image" /></button>)}</div>

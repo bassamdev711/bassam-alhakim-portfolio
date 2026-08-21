@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/smooth-scroll";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -156,6 +165,32 @@ const jsonLd = {
   ],
 };
 
+const projectIndex = [
+  ["restaurant-erp", "Restaurant ERP", "Laravel restaurant management and operations system"],
+  ["esp32-smart-meter", "ESP32 Smart Meter", "IoT electrical telemetry and energy monitoring system"],
+  ["wifi-monitor-pro", "WiFi Monitor Pro", "Flutter and Android network monitoring utility"],
+  ["tif", "TIF / طيف", "Luxury perfume commerce and 3D product experience"],
+  ["house-of-spices", "House of Spices / بيت البهارات", "Localized Yemeni spice commerce experience"],
+  ["athr", "ATHR / أثر", "Editorial footwear commerce experience"],
+  ["orven", "ORVÉN", "Luxury timepiece storefront and control room"],
+  ["taqa-home", "TAQA HOME / طاقة هوم", "Arabic-first home technology and energy commerce"],
+  ["dr-layan-clinic", "Dr. Layan Clinic", "Digital dental consultation and patient experience"],
+  ["maten", "MATEEN / متين", "Offline-first Flutter retail management system"],
+] as const;
+
+const projectItemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Bassam Alhakim selected software projects",
+  itemListElement: projectIndex.map(([slug, name, description], index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: `https://bassam-alhakim-portfolio.vercel.app/projects/${slug}`,
+    name,
+    description,
+  })),
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -164,12 +199,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} h-full antialiased`}
+      className={`${manrope.variable} ${dmMono.variable} h-full antialiased`}
     >
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectItemList) }}
         />
       </head>
       <body className="min-h-full flex flex-col font-sans selection:bg-blue-600 selection:text-white">
