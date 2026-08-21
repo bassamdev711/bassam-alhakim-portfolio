@@ -13,7 +13,7 @@ export function PortfolioHeader() {
   return <header className="site-header site-header-fixed">
     <a href="#top" className="brand-mark" onClick={closeMenu} aria-label="Bassam Alhakim home"><span className="brand-symbol">BA</span><span className="brand-copy">Bassam Alhakim<span>/</span></span></a>
     <nav className={`main-nav ${menuOpen ? "is-open" : ""}`} aria-label="Primary navigation">
-      <a href="#work" onClick={closeMenu}>Selected work</a><a href="#approach" onClick={closeMenu}>Approach</a><a href="#about" onClick={closeMenu}>About</a><a href="#contact" onClick={closeMenu}>Contact</a>
+      <a href="#work" onClick={closeMenu}>Selected work</a><a href="#orasoft" onClick={closeMenu}>Orasoft</a><a href="#approach" onClick={closeMenu}>Approach</a><a href="#about" onClick={closeMenu}>About</a><a href="#contact" onClick={closeMenu}>Contact</a>
     </nav>
     <div className="header-actions"><a href="mailto:bassam.alhakim.dev@gmail.com" className="header-availability"><span className="status-dot" /> Available for select work</a><a href="/Bassam_Alhakim_Systems_Engineer_CV.pdf" download className="header-cv-button"><Download size={14} /> Download CV</a><button className="menu-button" onClick={() => setMenuOpen((open) => !open)} aria-label="Toggle navigation menu" aria-expanded={menuOpen}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button></div>
   </header>;

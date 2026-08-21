@@ -483,3 +483,64 @@ button { font: inherit; }
 @media (max-width: 900px) {
   .project-card .project-details { min-height: 0; }
 }
+
+
+/* Orasoft founder section */
+.hero-founder-note { display: flex; align-items: center; gap: .65rem; margin: 1.25rem 0 0; color: var(--amber); font-family: var(--font-dm-mono), monospace; font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; }
+.hero-founder-note span { color: var(--faint); }
+.orasoft-section { padding: 8.5rem 0; border-top: 1px solid rgba(239,190,120,.22); background: radial-gradient(circle at 90% 18%, rgba(239,190,120,.12), transparent 28rem), linear-gradient(180deg, rgba(239,190,120,.035), transparent 42%); }
+.orasoft-section .section-kicker span:first-child, .orasoft-section .eyebrow { color: var(--amber); }
+.orasoft-intro { display: grid; grid-template-columns: 1.08fr .92fr; align-items: end; gap: 5rem; padding: 4rem 0 3.2rem; }
+.orasoft-intro h2 { max-width: 760px; margin: 1.6rem 0 0; font-size: clamp(3rem, 6vw, 6.7rem); line-height: .94; letter-spacing: -.08em; font-weight: 800; text-wrap: balance; }
+.orasoft-intro h2 span { color: var(--amber); }
+.orasoft-copy { max-width: 470px; color: var(--muted); font-size: .96rem; line-height: 1.85; }
+.orasoft-copy p { margin: 0 0 1.2rem; }
+.orasoft-services-line { color: var(--ink); font-family: var(--font-dm-mono), monospace; font-size: .65rem; letter-spacing: .07em; line-height: 1.8; text-transform: uppercase; }
+.orasoft-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.8rem; }
+.button-outline { color: var(--ink); border: 1px solid rgba(239,190,120,.45); background: rgba(239,190,120,.04); }
+.button-outline:hover { color: #08111f; border-color: var(--amber); background: var(--amber); }
+.orasoft-process { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(239,190,120,.22); border-bottom: 1px solid rgba(239,190,120,.22); }
+.orasoft-process span { padding: 1.2rem 1.1rem 1.2rem 0; color: var(--faint); font-family: var(--font-dm-mono), monospace; font-size: .59rem; letter-spacing: .08em; line-height: 1.5; text-transform: uppercase; border-right: 1px solid rgba(239,190,120,.16); }
+.orasoft-process span:not(:first-child) { padding-left: 1.1rem; }
+.orasoft-process span:last-child { border-right: 0; color: var(--amber); }
+.orasoft-gallery { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: .8rem; margin-top: 1.6rem; }
+.orasoft-image { position: relative; min-height: 230px; overflow: hidden; border: 1px solid rgba(239,190,120,.18); background: #080b10; box-shadow: 0 18px 50px rgba(0,0,0,.22); }
+.orasoft-image img { object-fit: cover; transition: transform .5s cubic-bezier(.23,1,.32,1), filter .5s ease; filter: saturate(.88) contrast(1.03); }
+.orasoft-image:hover img { transform: scale(1.035); filter: saturate(1) contrast(1.05); }
+.orasoft-image-1 { grid-column: span 7; aspect-ratio: 819 / 1024; }
+.orasoft-image-2 { grid-column: span 5; aspect-ratio: 819 / 1024; }
+.orasoft-image-3 { grid-column: span 5; aspect-ratio: 819 / 1024; }
+.orasoft-image-4 { grid-column: span 3; aspect-ratio: 9 / 16; }
+.orasoft-image-5 { grid-column: span 4; aspect-ratio: 16 / 9; }
+.orasoft-image-6 { grid-column: span 12; aspect-ratio: 819 / 1024; max-height: 540px; }
+@media (max-width: 900px) {
+  .orasoft-intro { grid-template-columns: 1fr; gap: 2rem; }
+  .orasoft-copy { max-width: 650px; }
+  .orasoft-process { grid-template-columns: repeat(2, 1fr); }
+  .orasoft-process span:nth-child(2) { border-right: 0; }
+  .orasoft-process span:nth-child(-n+2) { border-bottom: 1px solid rgba(239,190,120,.16); }
+  .orasoft-gallery { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .orasoft-image-1, .orasoft-image-2, .orasoft-image-3 { grid-column: span 3; }
+  .orasoft-image-4 { grid-column: span 2; }
+  .orasoft-image-5 { grid-column: span 4; }
+  .orasoft-image-6 { grid-column: span 6; }
+}
+@media (max-width: 640px) {
+  .hero-founder-note { align-items: flex-start; font-size: .53rem; line-height: 1.6; }
+  .orasoft-section { padding: 5.5rem 0; }
+  .orasoft-intro { padding-top: 3rem; }
+  .orasoft-intro h2 { font-size: clamp(2.8rem, 14vw, 4.8rem); }
+  .orasoft-copy { font-size: .88rem; }
+  .orasoft-actions { align-items: stretch; flex-direction: column; }
+  .orasoft-actions .button { width: 100%; }
+  .orasoft-process { grid-template-columns: 1fr; }
+  .orasoft-process span, .orasoft-process span:not(:first-child) { padding: .85rem 0; border-right: 0; border-bottom: 1px solid rgba(239,190,120,.16); }
+  .orasoft-process span:last-child { border-bottom: 0; }
+  .orasoft-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
+  .orasoft-image { min-height: 0; }
+  .orasoft-image-1, .orasoft-image-2, .orasoft-image-3, .orasoft-image-4, .orasoft-image-5, .orasoft-image-6 { grid-column: span 1; max-height: none; }
+  .orasoft-image-1, .orasoft-image-2, .orasoft-image-3 { aspect-ratio: 4 / 5; }
+  .orasoft-image-4 { aspect-ratio: 9 / 16; }
+  .orasoft-image-5 { aspect-ratio: 16 / 10; }
+  .orasoft-image-6 { grid-column: span 2; aspect-ratio: 4 / 5; }
+}

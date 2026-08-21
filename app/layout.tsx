@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     default: "Bassam Alhakim — Software Engineer & Product Builder",
   },
   description:
-    "Bassam Alhakim is a software engineer and product builder focused on reliable architecture, full-stack delivery, expressive interfaces, and digital products that hold up in the real world.",
+    "Bassam Alhakim is a software engineer, product builder, and founder of Orasoft, focused on reliable architecture, full-stack delivery, expressive interfaces, and digital products that hold up in the real world.",
   keywords: [
     "بسام الحكيم",
     "بسام عبد الحكيم",
@@ -49,6 +49,9 @@ export const metadata: Metadata = {
     "مطور Next.js",
     "أعمال برمجية",
     "معرض أعمال",
+    "Orasoft",
+    "Founder of Orasoft",
+    "ORA software",
   ],
   authors: [{ name: "بسام الحكيم (Bassam Alhakim)", url: "https://bassam-alhakim-portfolio.vercel.app" }],
   creator: "Bassam Alhakim",
@@ -133,6 +136,19 @@ const jsonLd = {
         "https://github.com/bassamdev711",
         "https://www.linkedin.com/in/bassam-al-hakim-b4007a40b",
       ],
+      worksFor: {
+        "@id": "https://orasoft.vercel.app/#organization",
+      },
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://orasoft.vercel.app/#organization",
+      name: "Orasoft",
+      url: "https://orasoft.vercel.app/",
+      description: "A digital software company turning ideas, products, and business operations into clear systems through product discovery, UX/UI, web platforms, mobile apps, and digital operations.",
+      founder: {
+        "@id": "https://bassam-alhakim-portfolio.vercel.app/#person",
+      },
     },
     {
       "@type": "ProfilePage",

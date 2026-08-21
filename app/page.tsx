@@ -11,7 +11,7 @@ export default function PortfolioPage() {
     <section id="top" className="hero-section section-frame">
       <div className="hero-grid-line" />
       <div className="hero-content">
-        <p className="eyebrow"><span className="eyebrow-line" /> Software engineer · Product builder</p>
+        <p className="eyebrow"><span className="eyebrow-line" /> Software engineer · Product builder</p><p className="hero-founder-note">Founder of Orasoft <span>·</span> building practical digital systems</p>
         <h1>I engineer the systems<span>people trust.</span></h1>
         <p className="hero-lead">I&apos;m Bassam Alhakim — a systems-minded full-stack engineer working across Laravel, Next.js, Flutter, IoT, data, and product experience. I turn complex operations into software that feels clear, capable, and built to last.</p>
         <div className="hero-actions"><a href="#work" className="button button-primary">Explore selected work <ArrowDown size={16} /></a><a href="/Bassam_Alhakim_Systems_Engineer_CV.pdf" download className="button button-light"><Download size={16} /> Download résumé</a></div>
@@ -27,6 +27,8 @@ export default function PortfolioPage() {
 
     <section id="work" className="work-section section-frame"><div className="section-kicker"><span>03</span><span>Proof of work</span></div><div className="section-heading-row work-heading"><div><p className="eyebrow">Ten systems. One standard.</p><h2>Built for<br /><span>the real world.</span></h2></div><p className="section-intro">A selected body of commerce, healthcare, IoT, and store-technology products. Each case shows the thinking, tools, and operational depth behind the interface.</p></div><div className="project-list">{projects.map((project, index) => <ProjectCard key={project.name} project={project} index={index} />)}</div><div className="all-work-row"><span>15 public repositories on GitHub</span><a href="https://github.com/bassamdev711?tab=repositories" target="_blank" rel="noreferrer" className="text-link">View all repositories <ExternalLink size={15} /></a></div></section>
 
+    <OrasoftSection />
+
     <section id="contact" className="contact-section section-frame"><div className="contact-panel"><div className="contact-topline"><span>04 / Contact</span><span>Open to the right challenge</span></div><div className="contact-content"><p className="eyebrow"><span className="eyebrow-line" /> Start a conversation</p><h2>Have a complex idea?<br /><span>Let&apos;s give it shape.</span></h2><p>Whether you need a product from zero, a stronger technical foundation, or a second pair of eyes on a difficult system, I&apos;d be glad to hear what you&apos;re building.</p><a href="mailto:bassam.alhakim.dev@gmail.com" className="button button-light">bassam.alhakim.dev@gmail.com <ArrowUpRight size={17} /></a></div><div className="contact-links"><a href="https://github.com/bassamdev711" target="_blank" rel="noreferrer"><GithubMark size={17} /> GitHub</a><a href="https://www.linkedin.com/in/bassam-al-hakim-b4007a40b" target="_blank" rel="noreferrer"><BriefcaseBusiness size={17} /> LinkedIn</a><a href="tel:+967780500363"><Phone size={17} /> +967 780 500 363</a></div></div></section>
     <footer className="site-footer section-frame"><div className="footer-brand"><span className="brand-symbol">BA</span><span>© 2026 Bassam Alhakim</span></div><span>Designed, engineered, and shipped with intent.</span><a href="#top" className="footer-top">Back to top <ArrowUpRight size={15} /></a></footer>
   </main>;
@@ -35,4 +37,32 @@ export default function PortfolioPage() {
 function ProjectCard({ project, index }: { project: PortfolioProject; index: number }) {
   const isFeatured = index < 2;
   return <article className={`project-card ${isFeatured ? "project-card-featured" : "project-card-standard"} project-${project.accent}`}><div className="project-details"><div className="project-topline"><span>{project.eyebrow}</span><span>{project.number}</span></div><h3>{project.name}</h3><p className="project-title">{project.title}</p><p className="project-description">{project.description}</p><p className="project-impact"><Check size={15} /> {project.impact}</p><ProjectGallery project={project} featured={isFeatured} /><div className="project-bottom"><div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links"><a href={project.live} target="_blank" rel="noreferrer" className="text-link">View project <ArrowUpRight size={15} /></a><a href={project.external} target="_blank" rel="noreferrer" aria-label={`View ${project.name} source on GitHub`}><GithubMark size={17} /></a></div></div></div></article>;
+}
+
+function OrasoftSection() {
+  const images = [
+    { src: "/orasoft/website-importance-comparison.webp", alt: "Orasoft website presence comparison visual" },
+    { src: "/orasoft/brand-message.webp", alt: "Orasoft brand message and digital product visual" },
+    { src: "/orasoft/services-promo.webp", alt: "Orasoft services visual showing web and mobile experiences" },
+    { src: "/orasoft/phone-promo.webp", alt: "Orasoft mobile product experience visual" },
+    { src: "/orasoft/laptop-hero.webp", alt: "Orasoft website shown on a laptop" },
+    { src: "/orasoft/future-business.webp", alt: "Orasoft digital business visual" },
+  ];
+
+  return <section id="orasoft" className="orasoft-section section-frame">
+    <div className="section-kicker"><span>04</span><span>Founder-led company</span></div>
+    <div className="orasoft-intro">
+      <div>
+        <p className="eyebrow"><span className="eyebrow-line" /> Bassam Alhakim · Founder</p>
+        <h2>Orasoft — <span>building software with purpose.</span></h2>
+      </div>
+      <div className="orasoft-copy">
+        <p>Orasoft is the software company founded and built by Bassam Alhakim. It helps ambitious businesses turn ideas, products, and daily operations into clear digital systems that can launch, grow, and improve.</p>
+        <p className="orasoft-services-line">Product discovery · UX/UI · Web platforms · Mobile apps · Digital operations</p>
+        <div className="orasoft-actions"><a href="https://orasoft.vercel.app/" target="_blank" rel="noreferrer" className="button button-primary">Visit Orasoft <ExternalLink size={15} /></a><a href="https://orasoft.vercel.app/work" target="_blank" rel="noreferrer" className="button button-outline">View company work <ArrowUpRight size={15} /></a></div>
+      </div>
+    </div>
+    <div className="orasoft-process"><span>Explore the context</span><span>Map the path</span><span>Build with clarity</span><span>Improve what matters</span></div>
+    <div className="orasoft-gallery" aria-label="Orasoft visual gallery">{images.map((image, index) => <div key={image.src} className={`orasoft-image orasoft-image-${index + 1}`}><Image src={image.src} alt={image.alt} fill loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw" /></div>)}</div>
+  </section>;
 }
