@@ -5,14 +5,14 @@ import "./globals.css";
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   weight: ["400", "500", "600", "700", "800"],
 });
 
 const dmMono = DM_Mono({
   variable: "--font-dm-mono",
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   weight: ["400", "500"],
 });
 
