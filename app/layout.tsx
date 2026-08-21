@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Mono, Manrope } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/smooth-scroll";
-import { ThemeProvider } from "@/components/theme-provider";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -212,11 +210,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col font-sans selection:bg-blue-600 selection:text-white">
-        <ThemeProvider>
-          <SmoothScroll>
-            {children}
-          </SmoothScroll>
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );

@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, BriefcaseBusiness, Check, ChevronRight, Code2, Download, ExternalLink, Network, Phone, Server } from "lucide-react";
-import { GithubMark, PortfolioHeader, ProjectGallery, ScrollProgress } from "@/components/portfolio-interactive";
+import { GithubMark, PortfolioHeader } from "@/components/portfolio-interactive";
+import { ProjectGallery } from "@/components/project-gallery";
 import { capabilities, projects, technologies, type PortfolioProject } from "@/lib/portfolio-data";
 
 export default function PortfolioPage() {
   return <main className="site-shell">
-    <ScrollProgress />
-    <div className="ambient ambient-one" /><div className="ambient ambient-two" /><div className="noise-layer" />
     <PortfolioHeader />
 
     <section id="top" className="hero-section section-frame">
@@ -18,7 +17,7 @@ export default function PortfolioPage() {
         <div className="hero-actions"><a href="#work" className="button button-primary">Explore selected work <ArrowDown size={16} /></a><a href="/Bassam_Alhakim_Systems_Engineer_CV.pdf" download className="button button-light"><Download size={16} /> Download résumé</a></div>
         <div className="hero-proof"><div><strong>10</strong><span>selected systems</span></div><div><strong>15+</strong><span>repositories</span></div><div><strong>7</strong><span>technology areas</span></div></div>
       </div>
-      <div className="hero-portrait-wrap"><div className="portrait-card"><div className="portrait-meta"><span>BASSAM ALHAKIM</span><span>SYSTEMS ENGINEER</span></div><div className="portrait-image"><Image src="/developer.jpg" alt="Bassam Alhakim, software engineer" fill priority sizes="(max-width: 900px) 82vw, 420px" className="object-cover object-top" /></div><div className="portrait-footer"><span>Yemen · Remote</span><span>Software systems</span></div></div></div>
+      <div className="hero-portrait-wrap"><div className="portrait-card"><div className="portrait-meta"><span>BASSAM ALHAKIM</span><span>SYSTEMS ENGINEER</span></div><div className="portrait-image"><Image src="/developer-hero-576.webp" alt="Bassam Alhakim, software engineer" fill priority fetchPriority="high" unoptimized sizes="(max-width: 900px) 82vw, 420px" className="object-cover object-top" /></div><div className="portrait-footer"><span>Yemen · Remote</span><span>Software systems</span></div></div></div>
       <div className="hero-index"><span>Scroll to explore</span><ArrowDown size={16} /></div>
     </section>
 
