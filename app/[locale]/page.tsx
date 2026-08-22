@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight, BriefcaseBusiness, Check, ChevronRight, Code2, Download, ExternalLink, Network, Phone, Server } from "lucide-react";
+import { ArrowDown, ArrowUpRight, BriefcaseBusiness, CalendarDays, Check, ChevronRight, Code2, Download, ExternalLink, Network, Phone, Server } from "lucide-react";
 import { GithubMark, PortfolioHeader } from "@/components/portfolio-interactive";
 import { ProjectGallery } from "@/components/project-gallery";
-import { getDictionary, getLocale, getLocalizedProject, type Locale } from "@/lib/i18n";
+import { engagementLabel, formatProjectDateRange, getDictionary, getLocale, getLocalizedProject, type Locale } from "@/lib/i18n";
 import { projects, technologies, type PortfolioProject } from "@/lib/portfolio-data";
 
 function RichText({ value }: { value: string }) {
@@ -42,8 +42,9 @@ export default async function PortfolioPage({ params }: { params: Promise<{ loca
 
 function ProjectCard({ project, index, locale }: { project: PortfolioProject; index: number; locale: Locale }) {
   const d = getDictionary(locale).gallery;
+  const dateRange = formatProjectDateRange(project.startDate, project.endDate, locale);
   const isFeatured = index < 2;
-  return <article className={`project-card ${isFeatured ? "project-card-featured" : "project-card-standard"} project-${project.accent}`}><div className="project-details"><div className="project-topline"><span>{project.eyebrow}</span><span>{project.number}</span></div><h3>{project.name}</h3><p className="project-title">{project.title}</p><p className="project-description">{project.description}</p><p className="project-impact"><Check size={15} /> {project.impact}</p><ProjectGallery project={project} featured={isFeatured} locale={locale} dictionary={d} /><div className="project-bottom"><div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links"><a href={project.live} target="_blank" rel="noreferrer" className="text-link">{locale === "ar" ? "عرض المشروع" : "View project"} <ArrowUpRight size={15} /></a><a href={project.external} target="_blank" rel="noreferrer" aria-label={`${locale === "ar" ? "عرض مصدر" : "View"} ${project.name} ${locale === "ar" ? "على GitHub" : "source on GitHub"}`}><GithubMark size={17} /></a></div></div></div></article>;
+  return <article className={`project-card ${isFeatured ? "project-card-featured" : "project-card-standard"} project-${project.accent}`}><div className="project-details"><div className="project-topline"><span>{project.eyebrow}</span><span>{project.number}</span></div><div className="project-meta"><span className="project-meta-period">{dateRange ? <><CalendarDays size={13} aria-hidden="true" /> <span>{dateRange}</span></> : null}</span><span className="project-meta-type">{engagementLabel(project.engagement, locale)}</span></div><h3>{project.name}</h3><p className="project-title">{project.title}</p><p className="project-description">{project.description}</p><p className="project-impact"><Check size={15} /> {project.impact}</p><ProjectGallery project={project} featured={isFeatured} locale={locale} dictionary={d} /><div className="project-bottom"><div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links"><a href={project.live} target="_blank" rel="noreferrer" className="text-link">{locale === "ar" ? "عرض المشروع" : "View project"} <ArrowUpRight size={15} /></a><a href={project.external} target="_blank" rel="noreferrer" aria-label={`${locale === "ar" ? "عرض مصدر" : "View"} ${project.name} ${locale === "ar" ? "على GitHub" : "source on GitHub"}`}><GithubMark size={17} /></a></div></div></div></article>;
 }
 
 function OrasoftSection({ locale }: { locale: Locale }) {

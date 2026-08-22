@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { getDictionary, getLocale, getLocalizedProject, locales, localeConfig, type Locale } from "@/lib/i18n";
+import { ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays } from "lucide-react";
+import { engagementLabel, formatProjectDateRange, getDictionary, getLocale, getLocalizedProject, locales, localeConfig, type Locale } from "@/lib/i18n";
 import { projects, type PortfolioProject } from "@/lib/portfolio-data";
 
 const slugByName: Record<string, string> = {
@@ -59,6 +59,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ locale
   if (!project) notFound();
   const localized = getLocalizedProject(project, locale);
   const d = getDictionary(locale).detail;
+  const dateRange = formatProjectDateRange(localized.startDate, localized.endDate, locale);
   const isArabic = locale === "ar";
   const otherLocale: Locale = isArabic ? "en" : "ar";
   const jsonLd = {
@@ -78,7 +79,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ locale
   return <main className="project-detail-page" style={{ "--project-accent": accentFor(project) } as CSSProperties}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <header className="project-detail-header"><Link href={`/${locale}#work`} className="project-detail-back">{isArabic ? <ArrowRight size={16} /> : <ArrowLeft size={16} />} {d.backToWork}</Link><div className="project-detail-header-actions"><span>{d.caseStudy}</span><Link href={`/${otherLocale}/projects/${slug}`} className="language-switch">{isArabic ? "English" : "العربية"}</Link></div></header>
-    <section className="project-detail-hero"><p className="project-detail-eyebrow">{localized.eyebrow}</p><h1>{localized.name}</h1><p className="project-detail-title">{localized.title}</p><p className="project-detail-description">{localized.description}</p><div className="project-detail-actions">{localized.live ? <a href={localized.live} target="_blank" rel="noreferrer" className="project-detail-button project-detail-button-primary">{d.visitLive} <ArrowUpRight size={16} /></a> : null}<a href={localized.external} target="_blank" rel="noreferrer" className="project-detail-button">{d.viewSource}</a></div></section>
+    <section className="project-detail-hero"><p className="project-detail-eyebrow">{localized.eyebrow}</p><div className="project-meta project-detail-meta"><span className="project-meta-period">{dateRange ? <><CalendarDays size={14} aria-hidden="true" /> <span>{dateRange}</span></> : null}</span><span className="project-meta-type">{engagementLabel(localized.engagement, locale)}</span></div><h1>{localized.name}</h1><p className="project-detail-title">{localized.title}</p><p className="project-detail-description">{localized.description}</p><div className="project-detail-actions">{localized.live ? <a href={localized.live} target="_blank" rel="noreferrer" className="project-detail-button project-detail-button-primary">{d.visitLive} <ArrowUpRight size={16} /></a> : null}<a href={localized.external} target="_blank" rel="noreferrer" className="project-detail-button">{d.viewSource}</a></div></section>
     <section className="project-detail-media" aria-label={`${localized.name} ${d.projectImages}`}><div className="project-detail-hero-image"><Image src={localized.image} alt={`${localized.name} project hero`} fill priority sizes="(max-width: 900px) 100vw, 1100px" /></div><div className="project-detail-gallery">{localized.gallery.map((image, index) => <figure key={image}><Image src={image} alt={`${localized.name} ${index + 1}`} fill loading="lazy" sizes="(max-width: 900px) 100vw, 33vw" /><figcaption>{String(index + 1).padStart(2, "0")} / {localized.gallery.length}</figcaption></figure>)}</div></section>
     <section className="project-detail-stack"><span>{d.technology}</span><div>{localized.stack.map((item) => <strong key={item}>{item}</strong>)}</div></section>
     <footer className="project-detail-footer"><Link href={`/${locale}#work`}>{d.backToPortfolio}</Link><span>{d.builtWithIntent}</span></footer>

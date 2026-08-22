@@ -11,6 +11,7 @@ export const localeConfig = {
 export const dictionaries = {
   ar: {
     language: { label: "اللغة", switchTo: "English", current: "العربية" },
+    projectMeta: { period: "الفترة", client: "مشروع لعميل", personal: "مشروع شخصي", remote: "مشروع مستقل عن بُعد", academic: "المعرض التقني الثاني · الجامعة الوطنية", present: "حتى الآن" },
     nav: { selectedWork: "أعمال مختارة", orasoft: "Orasoft", approach: "المنهج", about: "نبذة", contact: "تواصل" },
     header: { availability: "متاح لمشاريع مختارة", downloadCv: "تحميل السيرة الذاتية", menu: "فتح قائمة التنقل", closeMenu: "إغلاق قائمة التنقل", home: "العودة إلى الصفحة الرئيسية" },
     home: {
@@ -103,6 +104,7 @@ export const dictionaries = {
   },
   en: {
     language: { label: "Language", switchTo: "العربية", current: "English" },
+    projectMeta: { period: "Timeline", client: "Client project", personal: "Personal project", remote: "Freelance · Remote", academic: "Technical Exhibition II · National University", present: "Present" },
     nav: { selectedWork: "Selected work", orasoft: "Orasoft", approach: "Approach", about: "About", contact: "Contact" },
     header: { availability: "Available for select work", downloadCv: "Download CV", menu: "Open navigation menu", closeMenu: "Close navigation menu", home: "Bassam Alhakim home" },
     home: {
@@ -196,6 +198,24 @@ export const dictionaries = {
 } as const;
 
 export type Dictionary = (typeof dictionaries)[Locale];
+
+export type Engagement = "client" | "personal" | "freelance-remote" | "academic";
+
+export function formatProjectDateRange(startDate: string | undefined, endDate: string | undefined, locale: Locale): string | null {
+  if (!startDate) return null;
+  const formatMonth = (value: string) => {
+    const [year, month] = value.split("-").map(Number);
+    return new Intl.DateTimeFormat(locale === "ar" ? "ar-SA" : "en-US", { month: "short", year: "numeric" }).format(new Date(Date.UTC(year, month - 1, 1)));
+  };
+  const start = formatMonth(startDate);
+  if (!endDate || endDate === "present") return `${start} — ${dictionaries[locale].projectMeta.present}`;
+  return `${start} — ${formatMonth(endDate)}`;
+}
+
+export function engagementLabel(engagement: Engagement, locale: Locale): string {
+  const labels = dictionaries[locale].projectMeta;
+  return labels[engagement === "freelance-remote" ? "remote" : engagement];
+}
 
 export function getLocale(value: string): Locale {
   return value === "en" ? "en" : "ar";

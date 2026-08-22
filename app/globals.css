@@ -572,3 +572,15 @@ button { font: inherit; }
   [dir="rtl"] .project-visual .visual-label { right: .9rem; left: auto; }
   [dir="rtl"] .orasoft-process span, [dir="rtl"] .orasoft-process span:not(:first-child) { padding: .85rem 0; border-left: 0; }
 }
+
+
+.project-meta { display: flex; align-items: center; flex-wrap: wrap; gap: .55rem 1rem; margin-top: .9rem; color: var(--muted); font-family: var(--font-dm-mono), monospace; font-size: .58rem; letter-spacing: .06em; text-transform: uppercase; }
+.project-meta-period { display: inline-flex; align-items: center; gap: .35rem; color: var(--blue); }
+.project-meta-type { display: inline-flex; align-items: center; gap: .35rem; padding: .32rem .48rem; color: var(--muted); border: 1px solid var(--line); background: rgba(255,255,255,.025); }
+.project-meta-type::before { content: '·'; color: var(--blue); }
+.project-detail-meta { margin: 1.25rem 0 0; font-size: .65rem; }
+.project-detail-meta .project-meta-type { color: var(--text); }
+@media (max-width: 640px) {
+  .project-meta { align-items: flex-start; flex-direction: column; gap: .45rem; line-height: 1.5; }
+  .project-detail-meta { margin-top: 1rem; }
+}
