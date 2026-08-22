@@ -22,7 +22,7 @@ const baseUrl = "https://bassam-alhakim-portfolio.vercel.app";
 
 async function requestLocale(): Promise<Locale> {
   const requestHeaders = await headers();
-  return getLocale(requestHeaders.get("x-site-locale") ?? "ar");
+  return getLocale(requestHeaders.get("x-site-locale") ?? "en");
 }
 
 export async function generateMetadata(): Promise<Metadata> {

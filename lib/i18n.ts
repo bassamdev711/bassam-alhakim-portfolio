@@ -1,7 +1,7 @@
 export type Locale = "ar" | "en";
 
 export const locales: readonly Locale[] = ["ar", "en"];
-export const defaultLocale: Locale = "ar";
+export const defaultLocale: Locale = "en";
 
 export const localeConfig = {
   ar: { label: "العربية", shortLabel: "عربي", dir: "rtl" as const, hreflang: "ar-SA", ogLocale: "ar_SA" },
