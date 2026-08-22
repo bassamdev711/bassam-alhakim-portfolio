@@ -603,3 +603,9 @@ button { font: inherit; }
   .site-header-fixed .menu-button { order: 3; width: 32px; height: 32px; padding: .35rem; }
   .site-header-fixed .main-nav { direction: rtl; }
 }
+@media (min-width: 641px) {
+  .site-header-fixed { direction: ltr; }
+  .site-header-fixed .brand-mark { order: 0; }
+  .site-header-fixed .main-nav { order: 1; direction: ltr; margin-left: auto; margin-right: 1rem; }
+  .site-header-fixed .header-actions { order: 2; direction: ltr; margin-left: 0; }
+}
