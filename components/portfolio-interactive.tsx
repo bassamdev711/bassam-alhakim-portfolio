@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { Download, Languages, Menu, X } from "lucide-react";
+import { FileText, Languages, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { getDictionary, type Locale } from "@/lib/i18n";
 
@@ -15,11 +16,11 @@ export function PortfolioHeader({ locale }: { locale: Locale }) {
   const d = getDictionary(locale);
   const targetLocale = locale === "ar" ? "en" : "ar";
   return <header className="site-header site-header-fixed">
-    <a href="#top" className="brand-mark" onClick={closeMenu} aria-label={d.header.home}><span className="brand-symbol">BA</span><span className="brand-copy">Bassam Alhakim<span>/</span></span></a>
+    <a href="#top" className="brand-mark" onClick={closeMenu} aria-label={d.header.home}><span className="brand-avatar"><Image src="/developer-hero-576.webp" alt="" fill sizes="36px" /></span><span className="brand-copy">Bassam Alhakim<span>/</span></span></a>
     <nav className={`main-nav ${menuOpen ? "is-open" : ""}`} aria-label={locale === "ar" ? "التنقل الرئيسي" : "Primary navigation"}>
       <a href="#work" onClick={closeMenu}>{d.nav.selectedWork}</a><a href="#orasoft" onClick={closeMenu}>{d.nav.orasoft}</a><a href="#approach" onClick={closeMenu}>{d.nav.approach}</a><a href="#about" onClick={closeMenu}>{d.nav.about}</a><a href="#contact" onClick={closeMenu}>{d.nav.contact}</a>
     </nav>
-    <div className="header-actions"><Link href={`/${targetLocale}`} className="language-switch" aria-label={`${d.language.label}: ${d.language.switchTo}`}><Languages size={14} /><span>{d.language.switchTo}</span></Link><a href="mailto:bassam.alhakim.dev@gmail.com" className="header-availability"><span className="status-dot" /> {d.header.availability}</a><a href="/Bassam_Alhakim_Systems_Engineer_CV.pdf" download className="header-cv-button"><Download size={14} /> {d.header.downloadCv}</a><button className="menu-button" onClick={() => setMenuOpen((open) => !open)} aria-label={menuOpen ? d.header.closeMenu : d.header.menu} aria-expanded={menuOpen}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button></div>
+    <div className="header-actions"><a href="/Bassam_Alhakim_Systems_Engineer_CV.pdf" download className="header-icon-button" aria-label={d.header.downloadCv} title={d.header.downloadCv}><FileText size={16} /></a><Link href={`/${targetLocale}`} className="header-icon-button" aria-label={`${d.language.label}: ${d.language.switchTo}`} title={d.language.switchTo}><Languages size={16} /></Link><button className="menu-button" onClick={() => setMenuOpen((open) => !open)} aria-label={menuOpen ? d.header.closeMenu : d.header.menu} aria-expanded={menuOpen}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button></div>
   </header>;
 }
 
